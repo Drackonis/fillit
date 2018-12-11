@@ -31,13 +31,12 @@ char	**simplify_argv(char **argv)
 		//printf ("argv |%c|\n", argv[1][z]);
 		//printf ("tab|%c|\n", tab[y][x]);
 		tab[y][x] = argv[1][z];
-		//printf ("argv |%c| in tab|%c|\n", argv[1][z], tab[y][x]);
+		printf ("argv |%c| in tab|%c|\n", argv[1][z], tab[y][x]);
 		x++;
 		z++;
 		if (z % 5 == 0)
 		{
 			tab[y][x] = ' ';
-			z++;
 		}
 		if (z % 21 == 0)
 		{
@@ -45,7 +44,6 @@ char	**simplify_argv(char **argv)
 			printf ("-----change line-----\n");
 			tab[y][x] = '\0';
 			x = 0;
-			z++;
 			y++;
 		}
 
