@@ -6,6 +6,6 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
-char	**simplify_argv(char **argv, int *nb);
+char	**simplify_argv(char **argv);
 
 #endif

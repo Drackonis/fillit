@@ -24,6 +24,7 @@ char	**simplify_argv(char **argv, int *nb)
 	x = 0;
 	y = 0;
 	z = 0;
+	printf ("MALLOC OK\n");
 	while (argv[1][z])
 	{
 		//printf ("| X : %d | y : %d | z : %d |\n", x, y, z);
