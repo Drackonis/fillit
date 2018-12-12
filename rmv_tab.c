@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   rmv_tab.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 10:56:26 by rkergast          #+#    #+#             */
-/*   Updated: 2018/11/16 14:02:54 by rkergast         ###   ########.fr       */
+/*   Created: 2018/12/12 16:01:25 by rkergast          #+#    #+#             */
+/*   Updated: 2018/12/12 16:20:44 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft.h"
+#include "fillit.h"
 
-int	ft_isdigit(int c)
+char	**rmv_tab(char c, char **tab)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (c < 65 || c > 90)
+		return (NULL);
+	while (tab[j])
+	{
+		while (tab[j][i])
+		{
+			if (tab[j][i] == c)
+				tab[j][i] = '.';
+			i++;
+		}
+		j++;
+	}
+	return (tab);
 }
-/*
-**int	main(void)
-**{
-**	int i = ft_isdigit(42);
-**	printf("%d", i);
-**	return (0);
-**}
-*/
+
