@@ -15,9 +15,7 @@
 int		ft_sqrt_up(const int nb)
 {
 	int		i;
-	int		p;
 
-	p = nb;
 	i = 2;
 	while (i * i < nb)
 		i++;

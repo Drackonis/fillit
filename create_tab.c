@@ -64,7 +64,58 @@ char	**rmv_tab(char c, char **tab)
 	}
 	return (tab);
 }
-/*
+
+t_pos	*new_pos(int x, int y)
+{
+	t_pos	*pos;
+
+	pos = ft_memalloc(sizeof(t_pos));
+	pos->x = x;
+	pos->y = y;
+	return (pos);
+}
+
+int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < piece->width)
+	{
+		j = 0;
+		while (j < piece->height)
+		{
+			if (piece->tab[j][i] == '#' && carre->tab[y + j][x + i] != '.')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	place_piece(piece, carre, new_pos(x, y), piece->skin);
+	return (1);
+}
+
+void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, char c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < piece->width)
+	{
+		j = 0;
+		while (j < piece->height)
+		{
+			if (piece->pos[j][i] == '#')
+				carre->tab[pos->y + j][pos->x + i] = c;
+			j++;
+		}
+		i++;
+	}
+	ft_memdel((void **)&pos);
+}
+
 int		main(void)
 {
 	char **tab;
@@ -105,4 +156,4 @@ int		main(void)
 	}
 	return 0;
 }
-*/
+
