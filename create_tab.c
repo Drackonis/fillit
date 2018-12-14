@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/12 16:41:07 by rkergast         ###   ########.fr       */
+/*   Updated: 2018/12/14 16:18:35 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 char **g_tab = NULL;
 
-char	**create_tab(int size)
+t_carre		*create_tab(int size)
 {
-	int		i;
+	int			i;
+	t_carre		*carre;
 
 	i = 0;
+	carre = ft_memalloc(sizeof(t_carre));
+	carre->size = size;
 	if (g_tab)
 	{
 		while (g_tab[i])
@@ -39,9 +42,29 @@ char	**create_tab(int size)
 		i++;
 	}
 	g_tab[i] = NULL;
-	return (g_tab);
+	carre->tab = g_tab;
+	return (carre);
 }
 
+t_carre		*fill_tab(t_carre *carre)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i != carre->size && j != carre->size)
+	{
+		carre->tab[j][i] = '.';
+		i++;
+		if (i >= carre->size)
+		{
+			i = 0;
+			j++;
+		}
+	}
+	return (carre);
+}
 
 char	**rmv_tab(char c, char **tab)
 {
@@ -75,6 +98,26 @@ t_pos	*new_pos(int x, int y)
 	return (pos);
 }
 
+void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, char c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < piece->width)
+	{
+		j = 0;
+		while (j < piece->height)
+		{
+			if (piece->tab[j][i] == '#')
+				carre->tab[pos->y + j][pos->x + i] = c;
+			j++;
+		}
+		i++;
+	}
+	ft_memdel((void **)&pos);
+}
+
 int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
 {
 	int	i;
@@ -96,62 +139,42 @@ int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
 	return (1);
 }
 
-void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, char c)
+t_carre		*fill_it(t_carre *carre)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (i < piece->width)
+	while (i < carre->size)
 	{
 		j = 0;
-		while (j < piece->height)
+		while (j < carre->size)
 		{
-			if (piece->pos[j][i] == '#')
-				carre->tab[pos->y + j][pos->x + i] = c;
+			if (carre->tab[i][j] == '.')
+			{
+				carre->tab[i][j] = 'P';
+			}
 			j++;
 		}
 		i++;
 	}
-	ft_memdel((void **)&pos);
+	return (carre);
 }
 
 int		main(void)
 {
-	char **tab;
+	t_carre *carre;
 	int		size;
 	int		i;
-	int		j;
 
-	tab = NULL;
 	size = 12;
 	i = 0;
-	j = 0;
-	tab = create_tab(size);
-	while (i != size && j != size)
-	{
-		tab[j][i] = 'A' + i + j;
-		i++;
-		if (i >= size)
-		{
-			i = 0;
-			j++;
-		}
-	}
-	i = 0;
+	carre = create_tab(size);
+	carre = fill_tab(carre);
+	carre = fill_it(carre);
 	while (i < size)
 	{
-		printf ("%s\n", tab[i]);
-		i++;
-	}
-	printf ("---------- rmv_tab F/K/R : -------------\n");
-	tab = rmv_tab('F', tab);
-	tab = rmv_tab('K', tab);
-	tab = rmv_tab('R', tab);
-	i = 0;
-	while (i < size)
-	{
-		printf ("%s\n", tab[i]);
+		printf ("%s\n", carre->tab[i]);
 		i++;
 	}
 	return 0;
