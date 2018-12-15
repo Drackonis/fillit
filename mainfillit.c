@@ -60,9 +60,10 @@ int	main(int argc, char **argv)
 	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
 		afficherlinkedlist(chain);
 
+
 /*	 FREE LINKED LIST */
 	piece = chain->first;
-	free(chain);
+	free(chai:xn);
 	while (piece != NULL)
 	{
 		i = 0;
@@ -83,7 +84,6 @@ int	main(int argc, char **argv)
 		free(str[i++]);
 	free(str);
 
-	while(1);
 	close(fd);
 	return (0);
 }
