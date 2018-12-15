@@ -21,17 +21,11 @@ typedef struct s_pos
 
 typedef struct s_piece
 {
-	int 	index;
 	char	**tab;
-	t_pos	ij;
-	struct s_piece	*next;
+	int	width;
+	int	height;
+	char	skin;
 }		t_piece;
-
-typedef struct s_chain
-{
-	int nbpiece;
-	struct s_piece	*first;
-}		t_chain;
 
 char	**simplify_argv(char **argv, int *nb);
 
