@@ -64,6 +64,7 @@ t_piece	*createelem(char **str, int index)
 		return (NULL);
 	piece->index = index;
 	piece->ptr = createpieces(str, index);
+	piece->put = 0;
 	if (piece)
 	{
 		piece->ij.x = taillepiece(piece->ptr, 'i');

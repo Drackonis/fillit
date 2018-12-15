@@ -110,6 +110,7 @@ static void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c)
 		j = 0;
 		while (j < piece->ij.x + 1)
 		{
+			printf ("\n%c|%d|%d\n", piece->ptr[j][i], i , j);
 			if (piece->ptr[j][i] == '#')
 				carre->tab[pos->y + j][pos->x + i] = 'A' + c;
 			j++;
@@ -160,8 +161,12 @@ static t_carre		*fill_it(t_carre *carre, t_piece *first, int nbpiece)
 			{
 				while (t == 0)
 				{
-					printf ("CHECK PIECE %d\n", piece->index);
-					t = check_piece(piece, carre, piece->ij.x, piece->ij.y);
+					printf ("CHECK PIECE %d\n\n\n", piece->index);
+					while (piece->put == 1 && piece->next)
+						piece = piece->next;
+					t = check_piece(piece, carre, j, i);
+					if (t == 1)
+						piece->put = 1;
 					if (!piece->next)
 						break ;
 					piece = piece->next;

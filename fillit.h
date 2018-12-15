@@ -23,6 +23,7 @@ typedef struct	s_pos
 typedef struct	s_piece
 {
 	int			index;
+	int		put;
 	char		**ptr;
 	t_pos		ij;
 	struct s_piece	*next;
