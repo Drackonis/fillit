@@ -31,10 +31,8 @@
 char	**input2(char **str)
 {
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	while (str[i] != NULL)
 	{
 		if (*str[i] == '\0')
@@ -54,7 +52,6 @@ char	**input(int fd)
 	char	*str;
 	char	*tmp;
 	char	**line;
-	int		j;
 
 	tmp = NULL;
 	if (!(line = malloc(sizeof(char) * 600)))
@@ -62,7 +59,6 @@ char	**input(int fd)
 	i = 0;
 	while (get_next_line(fd, &str) == 1)
 	{
-		j = 0;
 		tmp = str;
 		if (tmp)
 		{

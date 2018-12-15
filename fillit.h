@@ -3,7 +3,11 @@
 #define FILLIT_H
 
 #include "libft/libft.h"
-#include <stdio.h> /* A SUPPRE */ 
+#include <stdio.h> /* A SUPPRE */
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 typedef struct s_carre
 {
 	int		size;
@@ -48,6 +52,7 @@ char	**createpieces(char **str, int index);
 t_piece	*createelem(char **str, int index);
 t_chain	*createlist(char **str);
 int		taillepiece(char **ptr, char c);
-
+int		main_create_tab(t_piece *first, int nbpiece);
+int		ft_sqret_up(int nb);
 
 #endif
