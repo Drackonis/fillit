@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "fillit.h"
 
-int		ft_nextline(char **str, char **line, int fd, int nbbytes)
+# define BUFF_SIZE 42
+
+static int		ft_nextline(char **str, char **line, int fd, int nbbytes)
 {
 	char	*tmp;
 	int		len;

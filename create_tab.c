@@ -12,14 +12,14 @@
 
 #include "fillit.h"
 
-char **g_tab = NULL;
-
 static t_carre		*create_tab(int size)
 {
 	int			i;
 	t_carre		*carre;
+	char	**g_tab;
 
 	i = 0;
+	g_tab = NULL;
 	carre = ft_memalloc(sizeof(t_carre));
 	carre->size = size;
 	if (g_tab)
@@ -98,19 +98,20 @@ static t_pos	*new_pos(int x, int y)
 	return (pos);
 }
 
-static void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, char c)
+static void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < piece->width)
+	printf ("x : %d // y : %d\n", piece->ij.x, piece->ij.y);
+	while (i < piece->ij.y + 1)
 	{
 		j = 0;
-		while (j < piece->height)
+		while (j < piece->ij.x + 1)
 		{
-			if (piece->tab[j][i] == '#')
-				carre->tab[pos->y + j][pos->x + i] = c;
+			if (piece->ptr[j][i] == '#')
+				carre->tab[pos->y + j][pos->x + i] = 'A' + c;
 			j++;
 		}
 		i++;
@@ -124,27 +125,32 @@ static int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
 	int	j;
 	
 	i = 0;
-	while (i < piece->width)
+	while (i < piece->ij.y + 1)
 	{
 		j = 0;
-		while (j < piece->height)
+		while (j < piece->ij.x + 1)
 		{
-			if (piece->tab[j][i] == '#' && carre->tab[y + j][x + i] != '.')
+			if (piece->ptr[j][i] == '#' && carre->tab[y + j][x + i] != '.')
 				return (0);
 			j++;
 		}
 		i++;
 	}
-	place_piece(piece, carre, new_pos(x, y), piece->skin);
+	printf ("PLACE PIECE\n");
+	place_piece(piece, carre, new_pos(x, y), piece->index);
 	return (1);
 }
 
-static t_carre		*fill_it(t_carre *carre)
+static t_carre		*fill_it(t_carre *carre, t_piece *first, int nbpiece)
 {
 	int		i;
 	int		j;
+	int		t;
+	t_piece		*piece;
 
 	i = 0;
+	t = 0;
+	piece = first;
 	while (i < carre->size)
 	{
 		j = 0;
@@ -152,7 +158,16 @@ static t_carre		*fill_it(t_carre *carre)
 		{
 			if (carre->tab[i][j] == '.')
 			{
-				carre->tab[i][j] = 'P';
+				while (t == 0)
+				{
+					printf ("CHECK PIECE %d\n", piece->index);
+					t = check_piece(piece, carre, piece->ij.x, piece->ij.y);
+					if (!piece->next)
+						break ;
+					piece = piece->next;
+				}
+				t = 0;
+				piece = first;
 			}
 			j++;
 		}
@@ -168,10 +183,12 @@ int		main_create_tab(t_piece *first, int nbpiece)
 	int		i;
 
 	i = 0;
-	size = ft_sqrt_up(nbpiece);
+	printf ("\n\n\n-------------------------------------------\n\n\n");
+	size = ft_sqrt_up(nbpiece * 4);
+	printf ("size : %d // nbpiece : %d\n\n", size, nbpiece);
 	carre = create_tab(size);
 	carre = fill_tab(carre);
-	carre = fill_it(carre);
+	carre = fill_it(carre, first, nbpiece);
 	while (i < size)
 	{
 		printf ("%s\n", carre->tab[i]);

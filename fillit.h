@@ -11,7 +11,7 @@
 typedef struct s_carre
 {
 	int		size;
-	char	*tab;
+	char	**tab;
 }				t_carre;
 
 typedef struct	s_pos
@@ -54,5 +54,6 @@ t_chain	*createlist(char **str);
 int		taillepiece(char **ptr, char c);
 int		main_create_tab(t_piece *first, int nbpiece);
 int		ft_sqret_up(int nb);
+int		get_next_line(const int fd, char **line);
 
 #endif
