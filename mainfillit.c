@@ -60,10 +60,11 @@ int	main(int argc, char **argv)
 	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
 		afficherlinkedlist(chain);
 
+	main_create_tab(chain->first, nbpieces(str));
 
 /*	 FREE LINKED LIST */
 	piece = chain->first;
-	free(chai:xn);
+	free(chain);
 	while (piece != NULL)
 	{
 		i = 0;

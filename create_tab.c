@@ -14,7 +14,7 @@
 
 char **g_tab = NULL;
 
-t_carre		*create_tab(int size)
+static t_carre		*create_tab(int size)
 {
 	int			i;
 	t_carre		*carre;
@@ -46,7 +46,7 @@ t_carre		*create_tab(int size)
 	return (carre);
 }
 
-t_carre		*fill_tab(t_carre *carre)
+static t_carre		*fill_tab(t_carre *carre)
 {
 	int		i;
 	int		j;
@@ -66,7 +66,7 @@ t_carre		*fill_tab(t_carre *carre)
 	return (carre);
 }
 
-char	**rmv_tab(char c, char **tab)
+static char	**rmv_tab(char c, char **tab)
 {
 	int		i;
 	int		j;
@@ -88,7 +88,7 @@ char	**rmv_tab(char c, char **tab)
 	return (tab);
 }
 
-t_pos	*new_pos(int x, int y)
+static t_pos	*new_pos(int x, int y)
 {
 	t_pos	*pos;
 
@@ -98,7 +98,7 @@ t_pos	*new_pos(int x, int y)
 	return (pos);
 }
 
-void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, char c)
+static void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, char c)
 {
 	int	i;
 	int	j;
@@ -118,7 +118,7 @@ void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, char c)
 	ft_memdel((void **)&pos);
 }
 
-int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
+static int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
 {
 	int	i;
 	int	j;
@@ -139,7 +139,7 @@ int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
 	return (1);
 }
 
-t_carre		*fill_it(t_carre *carre)
+static t_carre		*fill_it(t_carre *carre)
 {
 	int		i;
 	int		j;
@@ -161,14 +161,14 @@ t_carre		*fill_it(t_carre *carre)
 	return (carre);
 }
 
-int		main(void)
+int		main_create_tab(t_piece *first, int nbpiece)
 {
 	t_carre *carre;
-	int		size;
+	int	size;
 	int		i;
 
-	size = 12;
 	i = 0;
+	size = ft_sqrt_up(nbpiece);
 	carre = create_tab(size);
 	carre = fill_tab(carre);
 	carre = fill_it(carre);
