@@ -17,36 +17,15 @@ int	nbpieces(char **str)
 	return (j);
 }
 
-int	afficher(char **str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	ft_putstr("________\n");
-	while (str[i] != NULL)
-	{
-		while (str[i][j] != '\0')
-		{
-			ft_putchar(str[i][j]);
-			ft_putchar(' ');
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-		j = 0;
-	}
-	ft_putstr("________\n");
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	char	**str;
 	int		fd;
 	int		i;
 	char	*file;
+	t_chain	*chain;
+	t_piece	*piece;
+	t_piece	*tmp;
 
 	if ((argc != 2) && ((argc != 3) || (ft_strcmp(argv[1], "-v") != 0)))
 	{
@@ -73,14 +52,38 @@ int	main(int argc, char **argv)
 		afficher(str);
 	printf("Nb pieces : %d\n", i = nbpieces(str));
 	
-	resolution(str, i);
+	movepieces(str, 0, 0, 0);
+	afficher(str);
 
+	chain = createlist(str);
 
-	/* FREE STR */
+	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
+		afficherlinkedlist(chain);
+
+/*	 FREE LINKED LIST */
+	piece = chain->first;
+	free(chain);
+	while (piece != NULL)
+	{
+		i = 0;
+		tmp = piece;
+		piece = piece->next;
+		while (i < 4)
+		{
+			free(tmp->ptr[i]);
+			i++;
+		}
+		free(tmp->ptr);
+		free(tmp);
+	}
+
+/*	 FREE STR */
 	i = 0;
 	while (str[i] != NULL)
 		free(str[i++]);
 	free(str);
+
+	while(1);
 	close(fd);
 	return (0);
 }
