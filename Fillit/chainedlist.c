@@ -1,20 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   chainedlist.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/19 15:55:15 by rkergast          #+#    #+#             */
+/*   Updated: 2018/12/19 16:02:17 by rkergast         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-int		taillepiece(char **ptr, char c)
+int		taillepiece(char **ptr, char c, int i)
 {
-	int	i;
 	int	j;
 	int	tab[2];
 
-	i = 0;
-	j = 0;
 	tab[0] = 0;
 	tab[1] = 0;
 	if (!(ptr && *ptr))
 		return (0);
-	while (i < 4)
+	while (i++ < 4)
 	{
-		while (j < 4)
+		j = -1;
+		while (j++ < 4)
 		{
 			if (ptr[i][j] == '#')
 			{
@@ -23,15 +33,11 @@ int		taillepiece(char **ptr, char c)
 				if (tab[1] < j)
 					tab[1] = j;
 			}
-			j++;
 		}
-		i++;
-		j = 0;
 	}
 	if (c == 'i')
 		return (tab[0]);
-	else
-		return (tab[1]);
+	return (tab[1]);
 }
 
 t_chain	*createlist(char **str)
@@ -67,8 +73,8 @@ t_piece	*createelem(char **str, int index)
 	piece->ptr = createpieces(str, index);
 	if (piece)
 	{
-		piece->ij.x = taillepiece(piece->ptr, 'i');
-		piece->ij.y = taillepiece(piece->ptr, 'j');
+		piece->ij.x = taillepiece(piece->ptr, 'i', -1);
+		piece->ij.y = taillepiece(piece->ptr, 'j', -1);
 	}
 	return (piece);
 }
@@ -87,9 +93,9 @@ char	**createpieces(char **str, int index)
 	{
 		k = i + (index * 5);
 		//printf("index : %d\n", index);
-	//		ft_putstr("\nSTR[k] : \n");
-	//		ft_putstr(str[k]);
-			ptr[i] = ft_strdup(str[k]);
+		//ft_putstr("\nSTR[k] : \n");
+		//ft_putstr(str[k]);
+		ptr[i] = ft_strdup(str[k]);
 		i++;
 	}
 	ptr[i] = NULL;

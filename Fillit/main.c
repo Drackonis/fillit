@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/19 16:13:52 by rkergast          #+#    #+#             */
+/*   Updated: 2018/12/19 16:14:49 by rkergast         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "fillit.h"
 
@@ -39,7 +51,6 @@ int	main(int argc, char **argv)
 	if (!(fd = open(file, O_RDONLY)))
 		return (0);
 	str = input(fd);
-
 	if (error(str) == 0)
 	{
 		printf("error\n");
@@ -47,21 +58,15 @@ int	main(int argc, char **argv)
 	}
 	else
 		printf("Valid\n");
-
 	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
 		afficher(str);
 	printf("Nb pieces : %d\n", i = nbpieces(str));
-	
 	movepieces(str, 0, 0, 0);
 	afficher(str);
-
 	chain = createlist(str);
-
 	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
 		afficherlinkedlist(chain);
-
 	main_create_tab(chain->first, nbpieces(str));
-
 /*	 FREE LINKED LIST */
 	piece = chain->first;
 	free(chain);
@@ -78,13 +83,11 @@ int	main(int argc, char **argv)
 		free(tmp->ptr);
 		free(tmp);
 	}
-
 /*	 FREE STR */
 	i = 0;
 	while (str[i] != NULL)
 		free(str[i++]);
 	free(str);
-
 	close(fd);
 	return (0);
 }

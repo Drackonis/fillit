@@ -6,7 +6,7 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2018/12/19 15:38:53 by rkergast         ###   ########.fr        #
+#    Updated: 2018/12/19 15:51:42 by rkergast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ FLAGS = -Wall -Wextra -Werror
 OBJ_NAME = $(SRC:.c=.o)
 SRC = $(SRC_NAME)
 OBJ = $(OBJ_NAME)
-NAME = fillit.out
+NAME = fillit
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
