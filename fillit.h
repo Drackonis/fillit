@@ -54,7 +54,7 @@ t_piece	*createelem(char **str, int index);
 t_chain	*createlist(char **str);
 int		taillepiece(char **ptr, char c);
 int		main_create_tab(t_piece *first, int nbpiece);
-int		ft_sqret_up(int nb);
+int		ft_sqrt_up(int nb);
 int		get_next_line(const int fd, char **line);
 
 #endif

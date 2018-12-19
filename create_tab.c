@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/14 16:18:35 by rkergast         ###   ########.fr       */
+/*   Updated: 2018/12/19 15:33:27 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static t_carre		*fill_tab(t_carre *carre)
 	return (carre);
 }
 
-static char	**rmv_tab(char c, char **tab)
+/*static char	**rmv_tab(char c, char **tab)
 {
 	int		i;
 	int		j;
@@ -86,7 +86,7 @@ static char	**rmv_tab(char c, char **tab)
 		j++;
 	}
 	return (tab);
-}
+}*/
 
 static t_pos	*new_pos(int x, int y)
 {
@@ -142,7 +142,7 @@ static int	check_piece(t_piece *piece, t_carre *carre, int x, int y)
 	return (1);
 }
 
-static t_carre		*fill_it(t_carre *carre, t_piece *first, int nbpiece)
+static t_carre		*fill_it(t_carre *carre, t_piece *first)
 {
 	int		i;
 	int		j;
@@ -193,7 +193,7 @@ int		main_create_tab(t_piece *first, int nbpiece)
 	printf ("size : %d // nbpiece : %d\n\n", size, nbpiece);
 	carre = create_tab(size);
 	carre = fill_tab(carre);
-	carre = fill_it(carre, first, nbpiece);
+	carre = fill_it(carre, first);
 	while (i < size)
 	{
 		printf ("%s\n", carre->tab[i]);
