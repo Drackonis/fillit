@@ -208,7 +208,7 @@ int		deplacerpiece(t_piece *piece, t_carre *carre)
 		printf("Carre->size : %d, i : %d, j : %d\n",carre->size,  i, j);
 	if (i < 3 && j > 0 && carre->tab[i + 1][j - 1] == 'A' + piece->index) /* PAS SUR le i, voir apres size up tab */
 		j--;
-	else if (i < 2 && j > 0 && carre->tab[i + 2][j - 1] == 'A' + piece->index)
+	else if (carre->size > 3 && i < 2 && j > 0 && carre->tab[i + 2][j - 1] == 'A' + piece->index)
 		j--;
 	else if (i < 3 && j > 1 && carre->tab[i + 1][j - 2] == 'A' + piece->index)
 		j = j - 2;
