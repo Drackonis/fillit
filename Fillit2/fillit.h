@@ -36,6 +36,8 @@ typedef struct	s_chain
 	struct s_piece		*first;
 }				t_chain;
 
+char			findlastpiece(t_carre *carre);
+int			deplacerpiece(t_piece *piece, t_carre *carre);
 char			**fin(t_carre *carre, t_piece *piece, int i, int j);
 int				nbpieceposee(t_piece *first);
 void			movepiecea(t_carre *carre, t_piece *piece);
