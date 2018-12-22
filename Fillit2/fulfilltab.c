@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/21 20:55:01 by bviollet         ###   ########.fr       */
+/*   Updated: 2018/12/22 13:15:05 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c) /* pos.x = i
 		}
 		i++;
 	}
+	if (pos)
+		free(pos);
 }
 
 int	check_piece(t_piece *piece, t_carre *carre, int x, int y) /* x = tab[i] | y = tab[x][j] */
@@ -206,12 +208,12 @@ int		deplacerpiece(t_piece *piece, t_carre *carre)
 		}
 	}
 		printf("Carre->size : %d, i : %d, j : %d\n",carre->size,  i, j);
-	if (i < 3 && j > 0 && carre->tab[i + 1][j - 1] == 'A' + piece->index) /* PAS SUR le i, voir apres size up tab */
+	if (i < 3 && j > 1 && carre->tab[i + 1][j - 2] == 'A' + piece->index)
+		j = j - 2;
+	else if (i < 3 && j > 0 && carre->tab[i + 1][j - 1] == 'A' + piece->index)
 		j--;
 	else if (carre->size > 3 && i < 2 && j > 0 && carre->tab[i + 2][j - 1] == 'A' + piece->index)
 		j--;
-	else if (i < 3 && j > 1 && carre->tab[i + 1][j - 2] == 'A' + piece->index)
-		j = j - 2;
 	carre->tab = rmv_tab('A' + piece->index, carre->tab);
 	piece->put = 0;
 	while (i < carre->size)

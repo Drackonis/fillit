@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:12:15 by bviollet          #+#    #+#             */
-/*   Updated: 2018/12/21 21:04:40 by bviollet         ###   ########.fr       */
+/*   Updated: 2018/12/22 13:23:54 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	movepieces(char **str, int i, int j, int nbpiece)
 			free(tab);
 			a = 1;
 		}
-		while (j < 4)
+		while (j++ < 4)
 		{
 			if (str[i][j] == '#' && a == 1)
 			{
@@ -34,11 +34,13 @@ void	movepieces(char **str, int i, int j, int nbpiece)
 			}
 			if (str[i][j] == '#' && a == 0)
 				movep(str, i, j, tab);
-			j++;
+			//j++;
 		}
 		i++;
-		j = 0;
+		j = -1;
 	}
+	if (tab)
+		free(tab);
 }
 
 void	movep(char **str, int i, int j, int *tab)
@@ -58,15 +60,14 @@ int		*movediff(char **str, int i, int j, int nbpiece)
 {
 	int	*tab;
 
-	tab = malloc(sizeof(int) * 2);
-	if (i > 0 && j > 1 && str[i + 1][j - 2] == '#')
-	{
-		if (j == 2)
-			j = 0;
-		else
-			j = 1;
-	}
-	else if (i > 0 && j > 0 && str[i + 1][j - 1] == '#')
+	if (!(tab = malloc(sizeof(int) * 2)))
+		exit (-1);
+
+	if (i < ft_numberline(str) && j > 1 && str[i + 1][j - 2] == '#')
+		j = j - 2;
+	else if (i + 1 < ft_numberline(str) && j > 0 && str[i + 1][j - 1] == '#')
+		j--;
+	else if (i + 2 < ft_numberline(str) && j > 0 && str[i + 2][j - 1] == '#')
 		j--;
 	tab[1] = j;
 	tab[0] = i - nbpiece * 5;

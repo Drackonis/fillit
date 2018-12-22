@@ -3,5 +3,5 @@ A test :
 	valid_18 dans Testfile/
 
 Il faut :
-	fix piece->ptr sur certaines pieces (la 1ere bug, le L inverse), a priori c'est le move.c plutot a corriger
+	fix piece->ptr sur certaines pieces (la 1ere bug, le L inverse), a priori c'est le move.c plutot a corriger l'autre cote avec fulfill est ok
 	check leaks et norme

@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 		return (0);
 	str = input(fd);
 
-	if (error(str) == 0)
+	if (!str || error(str) == 0)
 	{
 		printf("error\n");
 		return (0);
@@ -52,9 +52,9 @@ int	main(int argc, char **argv)
 		afficher(str);
 	printf("Nb pieces : %d\n", i = nbpieces(str));
 	
-	movepieces(str, 0, 0, 0);
 	afficher(str);
-
+	movepieces(str, 0, -1, 0);
+	afficher(str);
 	chain = createlist(str);
 
 	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
@@ -81,10 +81,12 @@ int	main(int argc, char **argv)
 
 /*	 FREE STR */
 	i = 0;
-	while (str[i] != NULL)
-		free(str[i++]);
-	free(str);
-
+	if (str)
+	{	
+		while (str[i])
+			free(str[i++]);
+		free(str);
+	}
 	close(fd);
 	return (0);
 }

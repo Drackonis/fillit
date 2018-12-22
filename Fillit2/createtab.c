@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/21 17:25:35 by bviollet         ###   ########.fr       */
+/*   Updated: 2018/12/22 13:32:55 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,23 @@ int		main_create_tab(t_piece *first, int nbpiece)
 	carre = (t_carre*)malloc(sizeof(carre));
 	i = 0;
 	carre->size = ft_sqrt_up(nbpiece * 4);
+	//carre->tab = (char**)malloc(sizeof(carre->tab) * 1);
 	carre->tab = NULL;
 	carre->tab = fill_tab(create_tab(carre), carre->size);
 	afficher(carre->tab);
 	carre = fill_it(carre, first, first,  nbpiece);
 
 	afficher(carre->tab);
+	
+	if (carre->tab)
+	{
+		while (carre->tab[i])
+			free(carre->tab[i++]);
+		free(carre->tab);
+	}
 	free(carre);
-	return 0;
+	return (0);
 }
-
 
 char		**create_tab(t_carre *carre)
 {
@@ -39,11 +46,11 @@ char		**create_tab(t_carre *carre)
 	tmp = carre->tab;
 	i = 0;
 	if (!(carre->tab = (char**)malloc(sizeof(char*) * (carre->size + 1))))
-		return (NULL);
-	while (i <= carre->size)
+		exit (-1);
+	while (i < carre->size) /* !!!ERREUR EVENTUELLE  avant <= mais on malloc NULL a la fin a priori donc < seulement */
 	{
 		if (!(carre->tab[i] = (char*)malloc(sizeof(char*) * (carre->size + 1))))
-			return (NULL);
+			exit (-1);
 		carre->tab[i][carre->size] = '\0';
 		i++;
 	}
@@ -52,10 +59,7 @@ char		**create_tab(t_carre *carre)
 	if (tmp)
 	{
 		while (tmp[i])
-		{
-			free(tmp[i]);
-			i++;
-		}
+			free(tmp[i++]);
 		free(tmp);
 	}
 	return (carre->tab);
