@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/18 16:28:38 by bviollet         ###   ########.fr       */
+/*   Updated: 2018/12/20 13:37:55 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ t_carre		*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 	piece = start;
 		while (j < carre->size)
 		{
-			if (carre->tab[i][j] == '.')
+			if (carre->tab[i][j])
 			{
 	afficher(carre->tab);
 		//sleep(1);

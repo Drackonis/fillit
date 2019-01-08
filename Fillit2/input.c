@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:51:43 by bviollet          #+#    #+#             */
-/*   Updated: 2018/12/22 13:54:43 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:09:08 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ char	**input(int fd)
 	int		j;
 
 	tmp = NULL;
-	if (!(line = malloc(sizeof(char) * 600))) /* !!! 600 */
+	/* !!! 600 */
+	if (!(line = malloc(sizeof(char) * 600)))
 		return (NULL);
 	i = 0;
 	while (get_next_line(fd, &str) == 1)

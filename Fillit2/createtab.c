@@ -6,13 +6,13 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/22 13:32:55 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/08 14:41:38 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main_create_tab(t_piece *first, int nbpiece)
+int			main_create_tab(t_piece *first, int nbpiece)
 {
 	t_carre *carre;
 	int		i;
@@ -24,10 +24,8 @@ int		main_create_tab(t_piece *first, int nbpiece)
 	carre->tab = NULL;
 	carre->tab = fill_tab(create_tab(carre), carre->size);
 	afficher(carre->tab);
-	carre = fill_it(carre, first, first,  nbpiece);
-
+	carre = fill_it(carre, first, first, nbpiece);
 	afficher(carre->tab);
-	
 	if (carre->tab)
 	{
 		while (carre->tab[i])
@@ -40,17 +38,18 @@ int		main_create_tab(t_piece *first, int nbpiece)
 
 char		**create_tab(t_carre *carre)
 {
-	int			i;
+	int		i;
 	char	**tmp;
 
 	tmp = carre->tab;
 	i = 0;
 	if (!(carre->tab = (char**)malloc(sizeof(char*) * (carre->size + 1))))
-		exit (-1);
-	while (i < carre->size) /* !!!ERREUR EVENTUELLE  avant <= mais on malloc NULL a la fin a priori donc < seulement */
+		exit(-1);
+/* !!!ERREUR EVENTUELLE  avant <= mais on malloc NULL a la fin a priori donc < seulement */
+	while (i < carre->size)
 	{
 		if (!(carre->tab[i] = (char*)malloc(sizeof(char*) * (carre->size + 1))))
-			exit (-1);
+			exit(-1);
 		carre->tab[i][carre->size] = '\0';
 		i++;
 	}
@@ -72,7 +71,6 @@ char		**fill_tab(char **tab, int size)
 
 	i = 0;
 	j = 0;
-
 	while (i < size)
 	{
 		j = 0;
@@ -86,7 +84,7 @@ char		**fill_tab(char **tab, int size)
 	return (tab);
 }
 
-char	**rmv_tab(char c, char **tab)
+char		**rmv_tab(char c, char **tab)
 {
 	int		i;
 	int		j;
@@ -108,7 +106,7 @@ char	**rmv_tab(char c, char **tab)
 	return (tab);
 }
 
-t_pos	*new_pos(int x, int y)
+t_pos		*new_pos(int x, int y)
 {
 	t_pos	*pos;
 

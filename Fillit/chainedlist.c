@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:55:15 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/19 16:02:17 by rkergast         ###   ########.fr       */
+/*   Updated: 2018/12/20 13:39:57 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		taillepiece(char **ptr, char c, int i)
 	tab[1] = 0;
 	if (!(ptr && *ptr))
 		return (0);
-	while (i++ < 4)
+	while (++i < 4)
 	{
 		j = -1;
 		while (j++ < 4)

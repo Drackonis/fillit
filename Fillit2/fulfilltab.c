@@ -6,90 +6,29 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2018/12/22 13:15:05 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:04:44 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			nbpieceposee(t_piece *first)
-{
-	int	final;
-	t_piece	*piece;
-	final = 0;
-	piece = first;
-	while (piece->next)
-	{
-		if (piece->put == 1)
-			final++;
-		piece = piece->next;
-	}
-	if (piece->put == 1)
-		final++;
-	return (final);
-}
-
-void	place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c) /* pos.x = i, pos.y = j */
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (pos->x + i < carre->size && i < piece->ij.x + 1)
-	{
-		j = 0;
-		while (pos->y + j < carre->size && j < piece->ij.y + 1)
-		{
-			if (piece->ptr[i][j] == '#')
-				carre->tab[pos->x + i][pos->y + j] = 'A' + c;
-			j++;
-		}
-		i++;
-	}
-	if (pos)
-		free(pos);
-}
-
-int	check_piece(t_piece *piece, t_carre *carre, int x, int y) /* x = tab[i] | y = tab[x][j] */
-{
-	int	i;
-	int	j;
-	
-	i = 0;
-	while (x + i < carre->size && i < piece->ij.x + 1)
-	{
-		j = 0;
-		while (y + j < carre->size && j < piece->ij.y + 1)
-		{
-			if (piece->ptr[i][j] == '#' && carre->tab[x + i][y + j] != '.')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	if (j < piece->ij.y + 1 || i < piece->ij.x + 1)
-		return (0);
-	place_piece(piece, carre, new_pos(x, y), piece->index);
-	return (1);
-}
-
-t_carre		*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
+t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 {
 	int		i;
 	int		j;
 	int		t;
 	int		k;
-	t_piece		*piece;
+	t_piece	*piece;
 
 	piece = start;
 	if (piece->previous && piece->previous->index == 0)
 		piece = first;
 	t = 0;
 	k = 0;
-
 	while (piece)
 	{
-		printf("Nbpieceposee : %d, piece->put : %d\n", nbpieceposee(first), piece->put);
+		printf("Nbpieceposee : %d, piece->put : %d\n",\
+				nbpieceposee(first), piece->put);
 		i = 0;
 		while (piece->put != 1 && i < carre->size)
 		{
@@ -112,19 +51,16 @@ t_carre		*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 			}
 			i++;
 		}
-			piece = piece->next;
+		piece = piece->next;
 		//else
 		//	piece = first;
 		k++;
 	}
 	afficher(carre->tab);
-
-
 	if (nbpiece != nbpieceposee(first))
 		again(nbpiece, first, carre);
-
 	return (carre);
-}	
+}
 
 void	again(int nbpiece, t_piece *first, t_carre *carre)
 {
@@ -134,24 +70,20 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 	int			cpt;
 	t_piece		*piece;
 
-(void)cpt;
-(void)nbrm;
-(void)start;
-
+	(void)cpt;
+	(void)nbrm;
+	(void)start;
 	piece = first;
 	while (piece->next)
 		piece = piece->next;
 	while (piece->previous && piece->put == 0)
 		piece = piece->previous;
-
 	while (piece && deplacerpiece(piece, carre) != 1)
-	{
 		while (piece && piece->put == 0)
-		piece = piece->previous;
-	}
+			piece = piece->previous;
 	try++;
 	if (piece && piece->next)
-	piece = piece->next;
+		piece = piece->next;
 	else
 		piece = first;
 	/**********************************************
@@ -165,7 +97,7 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 			while (piece->previous && piece->put == 0)
 				piece = piece->previous;
 	}
-***********************************************************/
+	*******************************************************/
 	if (try == nbpiece * nbpiece * nbpiece)
 	{
 		printf("\n------\nTRY : %d\n-------\n", try);
@@ -183,14 +115,13 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 		carre = fill_it(carre, first, first, nbpiece);
 		return ;
 	}
-
 	carre = fill_it(carre, first, piece, nbpiece);
 }
 
 int		deplacerpiece(t_piece *piece, t_carre *carre)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -207,36 +138,37 @@ int		deplacerpiece(t_piece *piece, t_carre *carre)
 			i++;
 		}
 	}
-		printf("Carre->size : %d, i : %d, j : %d\n",carre->size,  i, j);
+	printf("Carre->size : %d, i : %d, j : %d\n", carre->size, i, j);
 	if (i < 3 && j > 1 && carre->tab[i + 1][j - 2] == 'A' + piece->index)
 		j = j - 2;
 	else if (i < 3 && j > 0 && carre->tab[i + 1][j - 1] == 'A' + piece->index)
 		j--;
-	else if (carre->size > 3 && i < 2 && j > 0 && carre->tab[i + 2][j - 1] == 'A' + piece->index)
+	else if (carre->size > 3 && i < 2 && j > 0 &&\
+			carre->tab[i + 2][j - 1] == 'A' + piece->index)
 		j--;
 	carre->tab = rmv_tab('A' + piece->index, carre->tab);
 	piece->put = 0;
 	while (i < carre->size)
 	{
-		printf("Carre->size : %d, i : %d, j : %d\n",carre->size,  i, j);
-		j  = j < carre->size ? j + 1 : 0;
+		printf("Carre->size : %d, i : %d, j : %d\n", carre->size, i, j);
+		j = j < carre->size ? j + 1 : 0;
 		i = j == 0 ? i + 1 : i;
-		printf("Carre->size : %d, i : %d, j : %d\n\n\n",carre->size,  i, j);
+		printf("Carre->size : %d, i : %d, j : %d\n\n\n", carre->size, i, j);
 		if (check_piece(piece, carre, i, j) == 1)
 		{
 			piece->put = 1;
-	printf("Piece moved : %c avec index [%d][%d]\n", piece->index + 'A', i, j);
-	afficher(carre->tab);
+			printf("Piece moved : %c avec index [%d][%d]\n", piece->index + 'A', i, j);
+			afficher(carre->tab);
 			return (1);
 		}
 	}
 	return (0);
 }
 
-void		movepiece(t_carre *carre, t_piece *piece)
+void	movepiece(t_carre *carre, t_piece *piece)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -259,7 +191,6 @@ void		movepiece(t_carre *carre, t_piece *piece)
 		i++;
 		j = 0;
 	}
-
 	while (i < carre->size)
 	{
 		while (j < carre->size)

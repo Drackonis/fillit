@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   afficher.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/08 14:34:59 by rkergast          #+#    #+#             */
+/*   Updated: 2019/01/08 14:36:19 by rkergast         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-int	afficherlinkedlist(t_chain *list)
+int			afficherlinkedlist(t_chain *list)
 {
 	t_piece	*piece;
 	int		i;
@@ -8,7 +20,7 @@ int	afficherlinkedlist(t_chain *list)
 	piece = list->first;
 	while (piece)
 	{
-	printf("\n___________\n");
+		printf("\n___________\n");
 		i = 0;
 		printf("Index : %d\n", piece->index);
 		while (i < 4)
@@ -23,10 +35,10 @@ int	afficherlinkedlist(t_chain *list)
 	return (0);
 }
 
-void	afficher(char **str)
+void		afficher(char **str)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -45,6 +57,6 @@ void	afficher(char **str)
 			i++;
 			j = 0;
 		}
-	ft_putstr("________\n");
+		ft_putstr("________\n");
 	}
 }

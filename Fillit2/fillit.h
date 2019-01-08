@@ -73,5 +73,9 @@ char		**rmv_tab(char c, char **tab);
 char		**fill_tab(char **tab, int size);
 char		**create_tab(t_carre *carre);
 int				main_create_tab(t_piece *first, int nbpiece);
+void		taille(t_pos *tab0, t_pos *tab1, char **ptr);
+int			nbpieceposee(t_piece *first);
+void		place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c);
+int			check_piece(t_piece *piece, t_carre *carre, int x, int y);
 
 #endif
