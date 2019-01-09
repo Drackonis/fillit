@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:10:17 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 15:34:48 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:38:57 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ int			nbpieces(char **str)
 	return (j);
 }
 
+void		free_str(char **str)
+{
+	int		i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+			free(str[i++]);
+		free(str);
+	}
+}
+
 char		**check_error(int argc, char **argv, int *fd, char *file)
 {
 	char	**str;
@@ -48,6 +61,7 @@ char		**check_error(int argc, char **argv, int *fd, char *file)
 	if (!str || error(str) == 0)
 	{
 		printf("error\n");
+		free_str(str);
 		return (NULL);
 	}
 	else
@@ -81,19 +95,6 @@ void		free_linked_list(t_chain *chain)
 	}
 }
 
-void		free_str(char **str)
-{
-	int		i;
-
-	i = 0;
-	if (str)
-	{
-		while (str[i])
-			free(str[i++]);
-		free(str);
-	}
-}
-
 int			main(int argc, char **argv)
 {
 	char	**str;
@@ -103,7 +104,12 @@ int			main(int argc, char **argv)
 
 	file = NULL;
 	if ((str = check_error(argc, argv, &fd, file)) == NULL)
+	{
+		printf("coucou\n");
+		free_str(str);
+		close(fd);
 		return (0);
+	}
 	printf("Nb pieces : %d\n", nbpieces(str));
 	afficher(str);
 	movepieces(str, 0, -1, 0);
