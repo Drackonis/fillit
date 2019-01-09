@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:37:22 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 20:35:01 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/09 20:43:46 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ int			check_piece(t_piece *piece, t_carre *carre, int x, int y)
 		i++;
 	}
 //printf("\n j : %d, i : %d, piece->ij.y : %d, piece->ij.x : %d\n", j, i, piece->ij.y, piece->ij.x);
-	//if ((j < piece->ij.y + 1 || i < piece->ij.x + 1))
-	if ((piece->ij) && ((j < piece->ij.y + 1) || i < piece->ij.x + 1))
+	if (j < piece->ij.y + 1 || i < piece->ij.x + 1)
 		return (0);
 	place_piece(piece, carre, new_pos(x, y), piece->index);
 	return (1);
