@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 17:03:27 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 20:35:05 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ int			main_create_tab(t_piece *first, int nbpiece)
 	t_carre *carre;
 	int		i;
 
-	carre = (t_carre*)malloc(sizeof(carre));
+	carre = (t_carre*)malloc(sizeof(carre) * 2);
 	i = 0;
 	carre->size = ft_sqrt_up(nbpiece * 4);
-	carre->tab = NULL;
-	carre->tab = fill_tab(create_tab(carre), carre->size);
+	carre->tab = fill_tab(create_tab(carre, 1), carre->size);
 	carre = fill_it(carre, first, first, nbpiece);
 	afficher(carre->tab);
 	if (carre->tab)
@@ -34,12 +33,13 @@ int			main_create_tab(t_piece *first, int nbpiece)
 	return (0);
 }
 
-char		**create_tab(t_carre *carre)
+char		**create_tab(t_carre *carre, int k)
 {
 	int		i;
 	char	**tmp;
 
-	tmp = carre->tab;
+	if (k == 0)
+		tmp = carre->tab;
 	i = 0;
 	if (!(carre->tab = (char**)malloc(sizeof(char*) * (carre->size + 1))))
 		exit(-1);
@@ -52,7 +52,7 @@ char		**create_tab(t_carre *carre)
 	}
 	carre->tab[carre->size] = NULL;
 	i = 0;
-	if (tmp)
+	if (k == 0 && tmp)
 	{
 		while (tmp[i])
 			free(tmp[i++]);
@@ -107,7 +107,7 @@ t_pos		*new_pos(int x, int y)
 {
 	t_pos	*pos;
 
-	pos = ft_memalloc(sizeof(t_pos));
+	pos = ft_memalloc(sizeof(t_pos) + 8);
 	pos->x = x;
 	pos->y = y;
 	return (pos);

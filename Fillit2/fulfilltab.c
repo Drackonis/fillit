@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 16:51:30 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 20:16:42 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 		try = 0;
 		again_loop(first);
 		carre->size++;
-		carre->tab = fill_tab(create_tab(carre), carre->size);
+		carre->tab = fill_tab(create_tab(carre, 0), carre->size);
 		carre = fill_it(carre, first, first, nbpiece);
 		return ;
 	}

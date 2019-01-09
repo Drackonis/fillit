@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:40:59 by bviollet          #+#    #+#             */
-/*   Updated: 2018/12/08 14:52:10 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/09 20:04:48 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memalloc(size_t size)
 	while (i < size)
 	{
 		*(int *)(ptr + i) = 0;
-		i++;
+		i += 4;
 	}
 	return (ptr);
 }
