@@ -6,13 +6,12 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 15:28:40 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:51:30 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-/*Attetion a la first piece fonction recup pas forcemet la bonne*/
 t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 {
 	t_piece		*first;
@@ -20,8 +19,6 @@ t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 	first = piece;
 	while (piece)
 	{
-		printf("Nbpieceposee : %d, piece->put : %d\n",\
-				nbpieceposee(first), piece->put);
 		p->x = -1;
 		while (piece->put != 1 && p->x++ < carre->size)
 		{
@@ -30,22 +27,16 @@ t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 			{
 				if (check_piece(piece, carre, p->x, p->y) == 1)
 				{
-					afficher(carre->tab);
-					//getchar();
 					piece->put = 1;
 					p->y = -1;
 					p->x = 0;
 					piece = first;
-					printf("{ %d }\n", nbpieceposee(first));
 					if (nbpiece == nbpieceposee(first))
 						return (carre);
 				}
 			}
 		}
 		piece = piece->next;
-		//else
-		//	piece = first;
-		//k++;
 	}
 	return (carre);
 }
@@ -61,7 +52,6 @@ t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 		piece = first;
 	carre = fill_loop(carre, piece, p, nbpiece);
 	free(p);
-	afficher(carre->tab);
 	if (nbpiece != nbpieceposee(first))
 		again(nbpiece, first, carre);
 	return (carre);
@@ -71,7 +61,6 @@ void	again_loop(t_piece *piece)
 {
 	while (piece->next)
 	{
-		/*carre->tab = rmv_tab('A' + piece->index, carre->tab);*/
 		piece->put = 0;
 		piece = piece->next;
 	}
@@ -93,21 +82,8 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 			piece = piece->previous;
 	try++;
 	piece = piece && piece->next ? piece->next : first;
-	/**********************************************
-	while (piece->previous)
-	{
-			if (deplacerpiece(piece, carre, 0, 0) == 1)
-			{
-				try++;
-				break ;
-			}
-			while (piece->previous && piece->put == 0)
-				piece = piece->previous;
-	}
-	*******************************************************/
 	if (try == nbpiece * nbpiece * nbpiece)
 	{
-		printf("\n------\nTRY : %d\n-------\n", try);
 		try = 0;
 		again_loop(first);
 		carre->size++;
@@ -120,15 +96,11 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 
 int		deplacerpiece(t_piece *piece, t_carre *carre, int i, int j)
 {
-	printf("______\n");
-	printf("AVANT DEPLACEMENT\n");
-	afficher(carre->tab);
 	while (i < carre->size && carre->tab[i][j] != ('A' + piece->index))
 	{
 		j += j < carre->size ? 1 : -j;
 		i += j == 0 ? 1 : 0;
 	}
-	printf("Carre->size : %d, i : %d, j : %d\n", carre->size, i, j);
 	if (i < 3 && j > 1 && carre->tab[i + 1][j - 2] == 'A' + piece->index)
 		j = j - 2;
 	else if (i < 3 && j > 0 && carre->tab[i + 1][j - 1] == 'A' + piece->index)
@@ -140,15 +112,11 @@ int		deplacerpiece(t_piece *piece, t_carre *carre, int i, int j)
 	piece->put = 0;
 	while (i < carre->size)
 	{
-		printf("Carre->size : %d, i : %d, j : %d\n", carre->size, i, j);
 		j = j < carre->size ? j + 1 : 0;
 		i = j == 0 ? i + 1 : i;
-		printf("Carre->size : %d, i : %d, j : %d\n\n\n", carre->size, i, j);
 		if (check_piece(piece, carre, i, j) == 1)
 		{
 			piece->put = 1;
-			printf("Piece moved : %c avec index [%d][%d]\n", piece->index + 'A', i, j);
-			afficher(carre->tab);
 			return (1);
 		}
 	}

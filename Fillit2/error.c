@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:49:34 by bviollet          #+#    #+#             */
-/*   Updated: 2019/01/08 15:09:51 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:50:02 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ int		sharpvalid(char **str, int tab[2], int k, char dir)
 {
 	if (k <= 3 && tab[1] < 4 && dir != 'g' && str[tab[0]][tab[1] + 1] == '#')
 	{
-		tab[1] = tab[1] + 1; /* check j + 1 */
+		tab[1] = tab[1] + 1;
 		return (sharpvalid(str, tab, k + 1, 'd'));
 	}
 	if (k <= 3 && tab[1] > 0 && dir != 'd' && str[tab[0]][tab[1] - 1] == '#')
 	{
-		tab[1] = tab[1] - 1; /* check j - 1*/
+		tab[1] = tab[1] - 1;
 		return (sharpvalid(str, tab, k + 1, 'g'));
 	}
 	if (k <= 3 && tab[0] > 0 && dir != 'h' && str[tab[0] - 1][tab[1]] == '#')
 	{
-		tab[0] = tab[0] - 1; /* check i - 1 */
+		tab[0] = tab[0] - 1;
 		return (sharpvalid(str, tab, k + 1, 'b'));
 	}
 	if (k <= 3 && dir != 'b' && str[tab[0] + 1][tab[1]] == '#')
 	{
-		tab[0] = tab[0] + 1; /* check i + 1 */
+		tab[0] = tab[0] + 1;
 		return (sharpvalid(str, tab, k + 1, 'h'));
 	}
 	if (k >= 4)

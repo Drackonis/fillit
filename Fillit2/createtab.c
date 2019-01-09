@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/08 14:41:38 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:03:27 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ int			main_create_tab(t_piece *first, int nbpiece)
 	carre = (t_carre*)malloc(sizeof(carre));
 	i = 0;
 	carre->size = ft_sqrt_up(nbpiece * 4);
-	//carre->tab = (char**)malloc(sizeof(carre->tab) * 1);
 	carre->tab = NULL;
 	carre->tab = fill_tab(create_tab(carre), carre->size);
-	afficher(carre->tab);
 	carre = fill_it(carre, first, first, nbpiece);
 	afficher(carre->tab);
 	if (carre->tab)
@@ -45,7 +43,6 @@ char		**create_tab(t_carre *carre)
 	i = 0;
 	if (!(carre->tab = (char**)malloc(sizeof(char*) * (carre->size + 1))))
 		exit(-1);
-/* !!!ERREUR EVENTUELLE  avant <= mais on malloc NULL a la fin a priori donc < seulement */
 	while (i < carre->size)
 	{
 		if (!(carre->tab[i] = (char*)malloc(sizeof(char*) * (carre->size + 1))))

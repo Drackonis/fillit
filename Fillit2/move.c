@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:12:15 by bviollet          #+#    #+#             */
-/*   Updated: 2019/01/08 15:17:29 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:54:16 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	movepieces(char **str, int i, int j, int nbpiece)
 			}
 			if (str[i][j] == '#' && a == 0)
 				movep(str, i, j, tab);
-			//j++;
 		}
 		i++;
 		j = -1;

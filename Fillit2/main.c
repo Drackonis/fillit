@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:10:17 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 16:38:57 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:19:21 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,16 @@ char		**check_error(int argc, char **argv, int *fd, char *file)
 {
 	char	**str;
 
-	if ((argc != 2) && ((argc != 3) || (ft_strcmp(argv[1], "-v") != 0)))
-	{
-		ft_putstr("usage: fillit [-v : show pieces] file\n");
-		return (NULL);
-	}
-	if ((argc == 3) && (ft_strcmp(argv[2], "-v")))
-		file = argv[2];
-	else
-		file = argv[1];
+	file = argv[1];
 	if (!(*fd = open(file, O_RDONLY)))
 		return (NULL);
 	str = input(*fd);
-	if (!str || error(str) == 0)
+	if (!str || error(str) == 0 || argc != 2)
 	{
-		printf("error\n");
+		ft_putstr("error\n");
 		free_str(str);
 		return (NULL);
 	}
-	else
-		printf("Valid\n");
-	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
-		afficher(str);
 	return (str);
 }
 
@@ -105,18 +93,12 @@ int			main(int argc, char **argv)
 	file = NULL;
 	if ((str = check_error(argc, argv, &fd, file)) == NULL)
 	{
-		printf("coucou\n");
 		free_str(str);
 		close(fd);
 		return (0);
 	}
-	printf("Nb pieces : %d\n", nbpieces(str));
-	afficher(str);
 	movepieces(str, 0, -1, 0);
-	afficher(str);
 	chain = createlist(str);
-	if ((argc == 3) && (ft_strcmp(argv[1], "-v") == 0))
-		afficherlinkedlist(chain);
 	main_create_tab(chain->first, nbpieces(str));
 	free_linked_list(chain);
 	free_str(str);

@@ -6,27 +6,11 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:51:43 by bviollet          #+#    #+#             */
-/*   Updated: 2019/01/09 16:36:24 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:46:41 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*char	**delblank(char **str)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	while (str[i][0] == '\0')
-	{
-		tmp = str[i];
-		i++;
-		str = &str[i];
-		free(tmp);
-	}
-	return (str);
-}*/
 
 char	**input2(char **str)
 {
@@ -57,7 +41,6 @@ char	**input(int fd)
 	int		j;
 
 	tmp = NULL;
-	/* !!! 600 */
 	if (!(line = malloc(sizeof(char) * 600)))
 		return (NULL);
 	i = 0;
@@ -72,13 +55,26 @@ char	**input(int fd)
 		}
 		i++;
 	}
-	if (j == 0)
+	if (!line[0])
 	{
-		printf ("Si tu vois ce truc viens checker le malloc de line \n");
 		free(line);
 		return (NULL);
 	}
 	line[i] = NULL;
 	return (input2(line));
-	//return (delblank(input2(line)));
 }
+/*char	**delblank(char **str)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	while (str[i][0] == '\0')
+	{
+		tmp = str[i];
+		i++;
+		str = &str[i];
+		free(tmp);
+	}
+	return (str);
+}*/

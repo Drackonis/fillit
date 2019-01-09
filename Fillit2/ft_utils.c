@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:37:22 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/08 16:04:31 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:50:19 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int			nbpieceposee(t_piece *first)
 	return (final);
 }
 
-/* pos.x = i, pos.y = j */
 void		place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c)
 {
 	int		i;
@@ -73,7 +72,6 @@ void		place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c)
 		free(pos);
 }
 
-/* x = tab[i] | y = tab[x][j] */
 int			check_piece(t_piece *piece, t_carre *carre, int x, int y)
 {
 	int		i;

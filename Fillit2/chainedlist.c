@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:43:07 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 14:16:06 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:48:51 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,10 @@ char	**createpieces(char **str, int index)
 	while (i < 4)
 	{
 		k = i + (index * 5);
-		//printf("index : %d\n", index);
-		//ft_putstr("\nSTR[k] : \n");
-		//ft_putstr(str[k]);
 		ptr[i] = ft_strdup(str[k]);
 		i++;
 	}
 	ptr[i] = NULL;
-	afficher(ptr);
 	return (ptr);
 }
 
