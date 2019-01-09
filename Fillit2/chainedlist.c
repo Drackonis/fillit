@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:43:07 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/08 15:07:04 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/09 14:16:06 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ int		taillepiece(char **ptr, char c)
 {
 	t_pos	*tab0;
 	t_pos	*tab1;
+	int		i;
 
-	tab0 = new_pos(0, 0);
-	tab1 = new_pos(0, 0);
 	if (!(ptr && *ptr))
 		return (0);
+	tab0 = new_pos(0, 0);
+	tab1 = new_pos(0, 0);
 	while (tab0->x < 4)
 	{
 		while (tab0->y < 4)
@@ -31,10 +32,10 @@ int		taillepiece(char **ptr, char c)
 		tab0->x++;
 		tab0->y = 0;
 	}
-	if (c == 'i')
-		return (tab1->x);
-	else
-		return (tab1->y);
+	free(tab0);
+	i = c == 'i' ? tab1->x : tab1->y;
+	free(tab1);
+	return (i);
 }
 
 t_chain	*createlist(char **str)
