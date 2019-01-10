@@ -6,7 +6,7 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2019/01/10 15:44:54 by rkergast         ###   ########.fr        #
+#    Updated: 2019/01/10 16:08:02 by bviollet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 	$(CC) $(FLAGS) $(SRC) -o $(EXE)
 %.o: %.c
-	$(CC) -g $(FLAGS) -o $@ -c $<
+	$(CC) $(FLAGS) -o $@ -c $<
 
 clean :
 	rm -fv $(OBJ)

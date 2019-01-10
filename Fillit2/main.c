@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:10:17 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/10 14:33:00 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:04:56 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ int			main(int argc, char **argv)
 	char	*file;
 	t_chain	*chain;
 
+	if (argc != 2)
+	{
+		ft_putstr("usage: fillit source_file\n");
+		return (0);
+	}
 	file = NULL;
 	if ((str = check_error(argc, argv, &fd, file)) == NULL)
 	{
