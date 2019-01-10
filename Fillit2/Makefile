@@ -6,7 +6,7 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2019/01/10 16:08:02 by bviollet         ###   ########.fr        #
+#    Updated: 2019/01/10 16:11:35 by bviollet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ clean :
 	rm -fv $(OBJ)
 
 fclean: clean
-	rm -fv $(LIB)
 	rm -fv $(NAME)
 	rm -fv $(EXE)
 
