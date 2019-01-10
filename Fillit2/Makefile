@@ -6,7 +6,7 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2019/01/10 16:11:35 by bviollet         ###   ########.fr        #
+#    Updated: 2019/01/10 16:24:09 by bviollet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,14 +45,15 @@ $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 	$(CC) $(FLAGS) $(SRC) -o $(EXE)
+
 %.o: %.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
 clean :
-	rm -fv $(OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	rm -fv $(NAME)
-	rm -fv $(EXE)
+	rm -f $(NAME)
+	rm -f $(EXE)
 
 re: fclean all
