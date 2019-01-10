@@ -6,7 +6,7 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2019/01/10 16:32:59 by rkergast         ###   ########.fr        #
+#    Updated: 2019/01/10 16:41:53 by rkergast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,24 +35,25 @@ FLAGS = -Wall -Wextra -Werror
 OBJ_NAME = $(SRC:.c=.o)
 SRC = $(SRC_NAME)
 OBJ = $(OBJ_NAME)
-NAME = fillit.a
-EXE = fillit
+NAME = fillit
+LIB = fillit.a
 .PHONY: all, clean, fclean, re
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-	$(CC) $(FLAGS) $(SRC) -o $(EXE)
+	ar rc $(LIB) $(OBJ)
+	ranlib $(LIB)
+	$(CC) $(FLAGS) $(SRC) -o $(NAME)
+
 %.o: %.c
 	$(CC) $(FLAGS) -o $@ -c $<
 
 clean :
-	rm -fv $(OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	rm -fv $(NAME)
-	rm -fv $(EXE)
+	rm -f $(LIB)
+	rm -f $(NAME)
 
 re: fclean all
