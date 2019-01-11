@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:10:17 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/10 16:04:56 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/11 13:38:03 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int			main(int argc, char **argv)
 		close(fd);
 		return (0);
 	}
-	movepieces(str, 0, -1, 0);
+	movepieces(str, -1, -1, 0);
 	chain = createlist(str);
 	main_create_tab(chain->first, nbpieces(str));
 	free_linked_list(chain);

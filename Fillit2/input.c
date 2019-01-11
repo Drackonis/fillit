@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:51:43 by bviollet          #+#    #+#             */
-/*   Updated: 2019/01/10 15:52:53 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/11 13:48:21 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,36 @@ char	**input2(char **str)
 	return (str);
 }
 
-char	**input(int fd)
+int		get_line(int fd, char *tmp, char **line)
 {
 	int		i;
 	char	*str;
-	char	*tmp;
-	char	**line;
 
-	tmp = NULL;
-	if (!(line = (char**)malloc(sizeof(char*) * 130)))
-		return (NULL);
 	i = 0;
 	while ((get_next_line(fd, &str)) == 1)
 	{
 		tmp = str;
 		if (tmp)
 		{
-			line[i] = ft_strdup(tmp);
+			line[i++] = ft_strdup(tmp);
 			free(tmp);
 		}
 		else
-			line[i] = ft_strdup("\0");
-		i++;
+			line[i++] = ft_strdup("\0");
 	}
+	return (i);
+}
+
+char	**input(int fd)
+{
+	int		i;
+	char	*tmp;
+	char	**line;
+
+	tmp = NULL;
+	if (!(line = (char**)malloc(sizeof(char*) * 130)))
+		return (NULL);
+	i = get_line(fd, tmp, line);
 	if (!line[0])
 	{
 		free(line);
@@ -63,18 +70,20 @@ char	**input(int fd)
 	line[i] = NULL;
 	return (input2(line));
 }
-/*char	**delblank(char **str)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	while (str[i][0] == '\0')
-	{
-		tmp = str[i];
-		i++;
-		str = &str[i];
-		free(tmp);
-	}
-	return (str);
-}*/
+/*
+**char	**delblank(char **str)
+**{
+**	int		i;
+**	char	*tmp;
+**
+**	i = 0;
+**	while (str[i][0] == '\0')
+**	{
+**		tmp = str[i];
+**		i++;
+**		str = &str[i];
+**		free(tmp);
+**	}
+**	return (str);
+**}
+*/

@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/10 15:51:08 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/11 13:21:42 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,36 +123,37 @@ int		deplacerpiece(t_piece *piece, t_carre *carre, int i, int j)
 	return (0);
 }
 /*
-void	movepiece(t_carre *carre, t_piece *piece, int i, int j)
-{
-	while (i < carre->size)
-	{
-		while (j < carre->size)
-		{
-			if (carre->tab[i][j] == 'A' + piece->index)
-				break ;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	carre->tab = rmv_tab('A', carre->tab);
-	if (j < carre->size)
-		j++;
-	else
-	{
-		i++;
-		j = 0;
-	}
-	while (i < carre->size)
-	{
-		while (j < carre->size)
-		{
-			if (check_piece(piece, carre, j, i) == 1)
-				break ;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-}*/
+**void	movepiece(t_carre *carre, t_piece *piece, int i, int j)
+**{
+**	while (i < carre->size)
+**	{
+**		while (j < carre->size)
+**		{
+**			if (carre->tab[i][j] == 'A' + piece->index)
+**				break ;
+**			j++;
+**		}
+**		j = 0;
+**		i++;
+**	}
+**	carre->tab = rmv_tab('A', carre->tab);
+**	if (j < carre->size)
+**		j++;
+**	else
+**	{
+**		i++;
+**		j = 0;
+**	}
+**	while (i < carre->size)
+**	{
+**		while (j < carre->size)
+**		{
+**			if (check_piece(piece, carre, j, i) == 1)
+**				break ;
+**			j++;
+**		}
+**		j = 0;
+**		i++;
+**	}
+**}
+*/

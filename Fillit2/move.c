@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:12:15 by bviollet          #+#    #+#             */
-/*   Updated: 2019/01/09 16:54:16 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/11 13:38:23 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	movepieces(char **str, int i, int j, int nbpiece)
 	int	*tab;
 
 	a = 1;
-	while (i < ft_numberline(str) + 1)
+	while (++i < ft_numberline(str) + 1)
 	{
 		if (str[i][0] == '\0')
 		{
@@ -35,7 +35,6 @@ void	movepieces(char **str, int i, int j, int nbpiece)
 			if (str[i][j] == '#' && a == 0)
 				movep(str, i, j, tab);
 		}
-		i++;
 		j = -1;
 	}
 	if (tab)

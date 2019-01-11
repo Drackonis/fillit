@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:34:59 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/09 17:19:45 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/11 14:01:09 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			afficherlinkedlist(t_chain *list)
 		while (i < 4)
 		{
 			ft_putstr(piece->ptr[i]);
-			printf("\n");
+			ft_putchar('\n');
 			i++;
 		}
 		piece = piece->next;

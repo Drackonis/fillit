@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 18:41:34 by bviollet          #+#    #+#             */
-/*   Updated: 2018/12/14 16:38:43 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/11 14:00:03 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_nextline(char **str, char **line, int fd, int nbbytes)
 		tmp = ft_strdup(str[fd] + len + 1);
 		free(str[fd]);
 		str[fd] = tmp;
-		if (str[fd][0] == '\0') /* BUG ICI */
+		if (str[fd][0] == '\0')
 			ft_strdel(&str[fd]);
 	}
 	else if (str[fd][len] == '\0')
