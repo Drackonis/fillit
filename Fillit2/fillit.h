@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 13:53:44 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/11 13:59:32 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/12 14:51:38 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char				**input(int fd);
 char				**input2(char **str);
 int					error(char **str);
 int					ft_error2(int *i, int *ii, int *j, char **str);
+int					ft_error3(int i, char **str, int j, char mode);
 int					sharpvalid(char **str, int tab[2], int k, char dir);
 int					ft_numberline(char **str);
 char				**createpieces(char **str, int index);

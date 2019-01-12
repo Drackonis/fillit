@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 16:07:12 by bviollet          #+#    #+#             */
-/*   Updated: 2018/12/14 16:18:18 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/12 15:02:37 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, int n);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strchr(const char *s, int nb);
+char				ft_strchrcol(char **str, int i, int j, int find);
 char				*ft_strrchr(const char *s, int nb);
 char				*ft_strstr(const char *s1, const char *s2);
 char				*ft_strnstr(const char *s1, const char *s2, size_t size);
