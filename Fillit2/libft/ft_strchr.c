@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 15:31:55 by bviollet          #+#    #+#             */
-/*   Updated: 2018/11/15 12:56:02 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/12 15:18:25 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strchr(const char *s, int nb)
 {
 	int	i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	while ((s[i] != (char)nb) && (s[i] != 0))
 		i++;
