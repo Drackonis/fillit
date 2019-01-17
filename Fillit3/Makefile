@@ -6,7 +6,7 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2019/01/17 13:59:28 by bviollet         ###   ########.fr        #
+#    Updated: 2019/01/17 14:38:01 by bviollet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ libft/ft_lstnew.c libft/ft_lstdelone.c libft/ft_lstdel.c libft/ft_lstadd.c\
 libft/ft_lstiter.c libft/ft_lstmap.c libft/ft_strchrcol.c libft/ft_swap.c
 endef
 
-CC = gcc -g
+CC = gcc
 FLAGS = -Wall -Wextra -Werror
 OBJ_NAME = $(SRC:.c=.o)
 SRC = $(SRC_NAME)
