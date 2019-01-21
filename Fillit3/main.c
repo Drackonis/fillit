@@ -6,11 +6,10 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:10:17 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/21 13:55:43 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:50:54 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fillit.h"
 
 int			nbpieces(char **str)
