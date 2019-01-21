@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 15:10:17 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/11 14:58:43 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:55:43 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			nbpieces(char **str)
 	if (j > 26)
 	{
 		ft_putstr("error");
-		exit (-1);
+		exit(-1);
 	}
 	return (j);
 }

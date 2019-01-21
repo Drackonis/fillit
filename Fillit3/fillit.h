@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 13:53:44 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/17 14:27:49 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:02:58 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdio.h>
 
 typedef struct		s_carre
 {
@@ -79,7 +78,6 @@ int					taillepiece(char **ptr, char c);
 int					main_create_tab(t_piece *first, int nbpiece);
 int					ft_sqrt_up(int nb);
 int					get_next_line(const int fd, char **line);
-int					ft_sqrt_up(int nb);
 int					main_create_tab(t_piece *first, int nbpiece);
 int					check_piece(t_piece *piece, t_carre *carre, int x, int y);
 void				place_piece(t_piece *piece, t_carre *carre, t_pos *pos,\

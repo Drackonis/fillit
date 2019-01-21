@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:51:43 by bviollet          #+#    #+#             */
-/*   Updated: 2019/01/11 15:06:29 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:57:44 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**input2(char **str)
 			free(str[i]);
 			str[i] = malloc(sizeof(char) * 5);
 			ft_bzero(str[i], 5);
-			if (!str[i + 1]) // ICI MODIF POUR SORTIE SI LAST LINE /0
+			if (!str[i + 1])
 			{
 				ft_putstr("error\n");
 				exit(-1);
@@ -46,7 +46,7 @@ int		get_line(int fd, char *tmp, char **line)
 	while ((get_next_line(fd, &str)) == 1)
 	{
 		tmp = str;
-		if (ft_strlen(tmp) != 0 && ft_strlen(tmp) != 4) // ICI SI LINE LEN < 4
+		if (ft_strlen(tmp) != 0 && ft_strlen(tmp) != 4)
 		{
 			ft_putstr("error\n");
 			exit(-1);

@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/17 14:27:10 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:12:34 by rkergast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,7 @@ int			main_create_tab(t_piece *first, int nbpiece)
 	carre = fill_it(carre, first, first, nbpiece);
 	afficher(carre->tab);
 	if (carre->tab)
-	{
 		free_str(carre->tab);
-		/*while (carre->tab[i])
-		{
-			ft_putchar('O');
-			free(carre->tab[i++]);
-		}
-		free(carre->tab);*/
-	}
 	free(carre);
 	return (0);
 }
