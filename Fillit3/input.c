@@ -6,7 +6,7 @@
 /*   By: bviollet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 18:51:43 by bviollet          #+#    #+#             */
-/*   Updated: 2019/01/21 13:57:44 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:48:57 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		get_line(int fd, char *tmp, char **line)
 	char	*str;
 
 	i = 0;
-	while ((get_next_line(fd, &str)) == 1)
+	while (i < 130 && (get_next_line(fd, &str)) == 1)
 	{
 		tmp = str;
 		if (ft_strlen(tmp) != 0 && ft_strlen(tmp) != 4)
@@ -69,7 +69,7 @@ char	**input(int fd)
 	char	**line;
 
 	tmp = NULL;
-	if (!(line = (char**)malloc(sizeof(char*) * 130)))
+	if (!(line = (char**)malloc(sizeof(char*) * 131)))
 		return (NULL);
 	i = get_line(fd, tmp, line);
 	if (!line[0])
