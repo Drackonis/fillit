@@ -43,6 +43,8 @@ void	movepieces(char **str, int i, int j, int nbpiece)
 
 void	movep(char **str, int i, int j, int *tab)
 {
+	if (i - tab[0] < 0 || j - tab[1] < 0)
+		return ;
 	str[i - tab[0]][j - tab[1]] = '#';
 	if (tab[0] != 0 || tab[1] != 0)
 		str[i][j] = '.';
