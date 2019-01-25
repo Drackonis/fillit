@@ -6,12 +6,11 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 13:56:30 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/25 19:08:16 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/25 19:26:38 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 int		checkaround(char **str, int i, int j, int last)
 {
@@ -174,7 +173,7 @@ int		error(char **str)
 		if (str[i][0] != '\0' && ((!ft_err3(i, str, -1, 'l')) ||\
 					!ft_err3(i, str, -1, 'l')))
 		{
-			printf("ERR\n");
+			//printf("ERR\n");
 			return (0);
 		}
 		while (str[i + ii] && str[i + ii][0] != '\0')
@@ -185,7 +184,7 @@ int		error(char **str)
 		}
 		if ((ii != 4 || j != 4 || k != 4) || (ii == 0 && k == 0))
 		{	
-			printf("Last, ii : %d, j : %d, k : %d\n", ii, j, k);
+	//		printf("Last, ii : %d, j : %d, k : %d\n", ii, j, k);
 			return (0);
 		}
 		i = i + ii + 1;
