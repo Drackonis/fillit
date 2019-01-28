@@ -6,12 +6,12 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2019/01/28 14:07:27 by rkergast         ###   ########.fr        #
+#    Updated: 2019/01/28 14:21:11 by rkergast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 define SRC_NAME
-afficher.c chainedlist.c createtab.c error.c ft_utils.c\
+afficher.c chainedlist.c createtab.c error.c ft_utils.c error2.c\
 libft/get_next_line.c input.c move.c fulfilltab.c main.c onepiece.c\
 libft/ft_bzero.c libft/ft_memcpy.c libft/ft_memccpy.c libft/ft_memmove.c\
 libft/ft_memchr.c libft/ft_memcmp.c libft/ft_strlen.c libft/ft_strdup.c\
@@ -25,7 +25,7 @@ libft/ft_striter.c libft/ft_striteri.c libft/ft_strmap.c libft/ft_strmapi.c\
 libft/ft_strequ.c libft/ft_strnequ.c libft/ft_strsub.c libft/ft_strjoin.c\
 libft/ft_strtrim.c libft/ft_strsplit.c libft/ft_itoa.c libft/ft_putchar.c\
 libft/ft_putstr.c libft/ft_putendl.c libft/ft_putnbr.c libft/ft_putchar_fd.c\
-libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_numberline.c\
+libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_nbline.c\
 libft/ft_lstnew.c libft/ft_lstdelone.c libft/ft_lstdel.c libft/ft_lstadd.c\
 libft/ft_lstiter.c libft/ft_lstmap.c libft/ft_strchrcol.c libft/ft_swap.c
 endef

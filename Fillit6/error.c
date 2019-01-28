@@ -6,57 +6,57 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 13:56:30 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/23 16:04:13 by rkergast         ###   ########.fr       */
+/*   Updated: 2019/01/26 15:04:43 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "stdio.h"
 
-int		ft_numberline(char **str)
+int		checkaround(char **str, int i, int j, int last)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != NULL)
-		i++;
-	i--;
-	return (i);
+	if (!last && str[i + 1] != NULL && str[i + 1][j] == '#')
+		return (1);
+	if (!last && j < 3 && str[i][j + 1] == '#')
+		return (1);
+	if (last && j > 0 && str[i][j - 1] == '#')
+		return (1);
+	if (last && i > 0 && str[i - 1][j] == '#')
+		return (1);
+	return (0);
 }
 
-int		sharpvalid(char **str, int tab[2], int k, char dir)
+int		sharpvalid(char **s, int t[2], int k, char dir)
 {
-	if (k <= 3 && tab[1] < 4 && dir != 'g' && str[tab[0]][tab[1] + 1] == '#')
+	if (k <= 3 && t[1] < 3 && dir != 'g' && s[t[0]][t[1] + 1] == '#')
 	{
-		tab[1] = tab[1] + 1;
-		return (sharpvalid(str, tab, k + 1, 'd'));
+		t[1] = t[1] + 1;
+		return (sharpvalid(s, t, k + 1, 'd'));
 	}
-	if (k <= 3 && tab[1] > 0 && dir != 'd' && str[tab[0]][tab[1] - 1] == '#')
+	if (k <= 3 && t[1] > 0 && dir != 'd' && s[t[0]][t[1] - 1] == '#')
 	{
-		tab[1] = tab[1] - 1;
-		return (sharpvalid(str, tab, k + 1, 'g'));
+		t[1] = t[1] - 1;
+		return (sharpvalid(s, t, k + 1, 'g'));
 	}
-	if (k <= 3 && tab[0] > 0 && dir != 'h' && str[tab[0] - 1][tab[1]] == '#')
+	if (k <= 3 && t[0] > 0 && dir != 'h' && s[t[0] - 1][t[1]] == '#')
 	{
-		tab[0] = tab[0] - 1;
-		return (sharpvalid(str, tab, k + 1, 'b'));
+		t[0] = t[0] - 1;
+		return (sharpvalid(s, t, k + 1, 'b'));
 	}
-	if (k <= 3 && dir != 'b' && str[tab[0] + 1][tab[1]] == '#')
+	if (k <= 3 && dir != 'b' && t[0] < ft_nbline(s) && s[t[0] + 1][t[1]] == '#')
 	{
-		tab[0] = tab[0] + 1;
-		return (sharpvalid(str, tab, k + 1, 'h'));
+		t[0] = t[0] + 1;
+		return (sharpvalid(s, t, k + 1, 'h'));
 	}
 	if (k >= 4)
 		return (1);
 	if (dir == 'd' || dir == 'g')
-		return (sharpvalid(str, tab, k - 1, 'a'));
+		return (sharpvalid(s, t, k - 1, 'a'));
 	return (0);
 }
 
 int		ft_error2(int *i, int *ii, int *j, char **str)
 {
 	int	k;
-	int	tab[2];
 
 	k = 0;
 	while (str[*i + *ii] && str[*i + *ii][0] != '\0')
@@ -68,12 +68,8 @@ int		ft_error2(int *i, int *ii, int *j, char **str)
 				return (-1);
 			if (str[*i + *ii][*j] == '#')
 			{
-				tab[0] = *i + *ii;
-				tab[1] = *j;
-				if (k == 0)
-					if (!(sharpvalid(str, tab, 1, 'a')))
-						return (-1);
-				k++;
+				if (k++ == 0 && check_errorft(str, *i + *ii, *j) == -1)
+					return (-1);
 			}
 			*j = *j + 1;
 		}
@@ -96,7 +92,7 @@ int		ft_err3(int i, char **str, int j, char mode)
 		else if (ft_strchr(str[i++], '#') && tab == 0)
 			return (0);
 	}
-	while (mode == 'c' && j++ < 4)
+	while (mode == 'c' && str[i][j] && j++ < 3)
 	{
 		if (ft_strchrcol(str, i, j, '#') && tab == 10)
 			tab = 1;
@@ -117,23 +113,19 @@ int		error(char **str)
 
 	i = 0;
 	j = 0;
-	printf("coucou01\n");
-	while ((i <= ft_numberline(str)) && (str[i] != NULL))
+	while ((i <= ft_nbline(str)) && (str[i] != NULL))
 	{
-		printf ("coucou05\n");
 		k = 0;
 		ii = 0;
-		if (/*str[i][0] != '\0' && (!(ft_err3(i, str, -1, 'c')) ||*/\
-					!ft_err3(i, str, -1, 'l'))
+		if (str[i][0] != '\0' && ((!ft_err3(i, str, -1, 'l')) ||\
+					!ft_err3(i, str, -1, 'l')))
 			return (0);
-		printf("coucou02\n");
 		while (str[i + ii] && str[i + ii][0] != '\0')
 		{
 			j = 0;
 			if ((k = ft_error2(&i, &ii, &j, str)) == -1)
 				return (0);
 		}
-	printf("coucou03\n");
 		if ((ii != 4 || j != 4 || k != 4) || (ii == 0 && k == 0))
 			return (0);
 		i = i + ii + 1;
