@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 13:53:44 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/26 18:28:34 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/01/26 14:47:55 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct		s_chain
 	struct s_piece	*first;
 }					t_chain;
 
-int					realj(t_piece *piece, int j);
 int					check_errorft(char **str, int tab1, int tab2);
 int					checkaround(char **str, int i, int j, int last);
 int					isconx(char **s, int i, int j);

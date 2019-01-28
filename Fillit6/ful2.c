@@ -12,7 +12,6 @@
 
 #include "fillit.h"
 
-#include <stdio.h>
 t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 {
 	t_piece		*first;
@@ -28,9 +27,6 @@ t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 			{
 				if (check_piece(piece, carre, p->x, p->y) == 1)
 				{
-ft_putstr("\n______FILL LOOP\n");
-printf("Piece current : %c, x : %d, y : %d\n", (piece->index) + '0', p->x, p->y);
-afficher(carre->tab);
 					piece->put = 1;
 					p->y = -1;
 					p->x = 0;
@@ -42,8 +38,6 @@ afficher(carre->tab);
 		}
 		piece = piece->next;
 	}
-ft_putstr("\n______END LOOP\n");
-afficher(carre->tab);
 	return (carre);
 }
 
@@ -91,7 +85,7 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 			piece = piece->previous;
 	try++;
 	piece = piece && piece->next ? piece->next : first;
-	if (try == nbpiece * nbpiece * nbpiece)
+	if (try == nbpiece * nbpiece * nbpiece) /* reduire ce nombre ?? */
 	{
 		try = 0;
 		again_loop(first);
@@ -116,88 +110,37 @@ int		realj(t_piece *piece, int j)
 	str = piece->ptr;
 	while (str[i][j2++] == '.')
 		decalej++;
-	if (j - decalej >= 0)
+	if (j - j2 >= 0)
 		return (j - decalej);
 	return (j);
 }
 
 int		deplacerpiece(t_piece *piece, t_carre *carre, int i, int j)
 {
-printf("\n______DEBUT DEPLACER : %c\n", (char)(piece->index + 65));
-afficher(carre->tab);
 	while (i < carre->size && carre->tab[i][j] != ('A' + piece->index))
 	{
 		j += j < carre->size ? 1 : -j;
 		i += j == 0 ? 1 : 0;
 	}
-printf("Test debut deplacer, i : %d, j : %d\n", i, j);
-/*
 	if (i < 3 && j > 1 && carre->tab[i + 1][j - 2] == 'A' + piece->index)
 		j = j - 2;
 	else if (i < 3 && j > 0 && carre->tab[i + 1][j - 1] == 'A' + piece->index)
 		j--;
 	else if (carre->size > 3 && i < 2 && j > 0 &&\
 			carre->tab[i + 2][j - 1] == 'A' + piece->index)
-		j--;*/
-	j = realj(piece, j);
+		j--;
 	carre->tab = rmv_tab('A' + piece->index, carre->tab);
 	piece->put = 0;
 	while (i < carre->size)
 	{
 		j = j < carre->size ? j + 1 : 0;
 		i = j == 0 ? i + 1 : i;
-printf("\nI envoye a checkpiece : %d\n", i);
-printf("J envoye a checkpiece : %d\n", j);
-printf("Jreal envoye a checkpiece : %d\n", realj(piece, j));
-
-/* ICI IL FAUT SI LA PIECE EST PARTICULIERE (GENRE i -1 et j -2 == '#') envoyer non pas j mais j - 2 dans le cas d'erreur ici */
-/* !! Probablement checker avec i aussi */
-
-		//if (check_piece(piece, carre, i, realj(piece, j)) == 1)
-		if (check_piece(piece, carre, i, j) == 1)
+		//if (check_piece(piece, carre, i, j) == 1)
+		if (check_piece(piece, carre, i, realj(piece, j)) == 1)
 		{
 			piece->put = 1;
-ft_putstr("\n______FIN DEPLACER AVEC SUCCES\n");
-afficher(carre->tab);
 			return (1);
 		}
 	}
-ft_putstr("\n______FIN DEPLACER\n");
-afficher(carre->tab);
 	return (0);
 }
-/*
-**void	movepiece(t_carre *carre, t_piece *piece, int i, int j)
-**{
-**	while (i < carre->size)
-**	{
-**		while (j < carre->size)
-**		{
-**			if (carre->tab[i][j] == 'A' + piece->index)
-**				break ;
-**			j++;
-**		}
-**		j = 0;
-**		i++;
-**	}
-**	carre->tab = rmv_tab('A', carre->tab);
-**	if (j < carre->size)
-**		j++;
-**	else
-**	{
-**		i++;
-**		j = 0;
-**	}
-**	while (i < carre->size)
-**	{
-**		while (j < carre->size)
-**		{
-**			if (check_piece(piece, carre, j, i) == 1)
-**				break ;
-**			j++;
-**		}
-**		j = 0;
-**		i++;
-**	}
-**}
-*/
