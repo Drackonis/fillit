@@ -29,3 +29,21 @@ t_carre		*onepiece(t_carre *carre, t_piece *piece)
 	piece->put = 1;
 	return (carre);
 }
+
+int		realj(t_piece *piece, int j)
+{
+	char	**str;
+	int		i;
+	int		decalej;
+	int		j2;
+
+	i = 0;
+	j2 = 0;
+	decalej = 0;
+	str = piece->ptr;
+	while (str[i][j2++] == '.')
+		decalej++;
+	if (j - decalej >= 0)
+		return (j - decalej);
+	return (j);
+}
