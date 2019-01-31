@@ -46,6 +46,10 @@ typedef struct		s_chain
 	struct s_piece	*first;
 }					t_chain;
 
+int					sizeupneeded(t_carre *carre, t_piece *piece);
+int					forsizedeplacerpiece(t_piece *piece, t_carre *carre);
+int					forsizecheck_piece(t_piece *piece, t_carre *carre, int x, int y);
+
 int					realj(t_piece *piece, int j);
 int					check_errorft(char **str, int tab1, int tab2);
 int					checkaround(char **str, int i, int j, int last);
