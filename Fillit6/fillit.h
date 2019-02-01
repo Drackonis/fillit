@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 13:53:44 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/26 18:28:34 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:25:01 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ typedef struct		s_chain
 	int				nbpiece;
 	struct s_piece	*first;
 }					t_chain;
+
+int					allpiecedisorder(char **str, int size);
+t_piece				*lastpieceput(t_carre *carre, t_piece *piece);
+t_piece				*previouspieceput(t_carre *carre, t_piece *piece, int last);
 
 int					sizeupneeded(t_carre *carre, t_piece *piece);
 int					forsizedeplacerpiece(t_piece *piece, t_carre *carre);
