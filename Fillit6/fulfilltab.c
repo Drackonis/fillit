@@ -6,12 +6,13 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/26 18:29:58 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:23:55 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+#include <stdio.h>
 t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 {
 	t_piece		*first;
@@ -47,9 +48,10 @@ t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 	t_piece	*piece;
 
 	piece = start;
+//afficher(carre->tab);
 	p = new_pos(0, 0);
-	if (piece->previous && piece->previous->index == 0)
-		piece = first;
+//	if (piece->previous && piece->previous->index == 0)
+//		piece = first;
 	if (nbpiece == 1)
 		carre = onepiece(carre, piece);
 	else
@@ -72,28 +74,46 @@ void	again_loop(t_piece *piece)
 
 void	again(int nbpiece, t_piece *first, t_carre *carre)
 {
-	static int	try = 0;
 	t_piece		*piece;
 
 	piece = first;
+	//piece = lastpieceput(carre, first);
+	while (piece->next)
+		piece = piece->next;
+//printf("Piece put: %c\n", piece->index + 65);
+	while (piece && !piece->put)
+		piece = piece->previous;
+//printf("DEPLACE\n");
+	while (piece && deplacerpiece(piece, carre, 0, 0) != 1)
+	{
+		while (piece && !piece->put)
+			piece = piece->previous;
+	//	piece = lastpieceput(carre, first);
+		//piece = previouspieceput(carre, first, piece->index);
+//printf("Previous piece put: %c\n", piece->index + 65);
+//getchar();
+	}
+		//piece = previouspieceput(carre, first, piece->index);
+//printf("ENDEPLACE\n");
+	/*
 	while (piece->next)
 		piece = piece->next;
 	while (piece->previous && piece->put == 0)
 		piece = piece->previous;
 	while (piece && deplacerpiece(piece, carre, 0, 0) != 1)
 		while (piece && piece->put == 0)
-			piece = piece->previous;
-	try++;
-	piece = piece && piece->next ? piece->next : first;
-	if (try == nbpiece * nbpiece * nbpiece)
+			piece = piece->previous;*/
+	//piece = piece && piece->next ? piece->next : first;
+	if (allpiecedisorder(carre->tab, carre->size))
 	{
-		try = 0;
 		again_loop(first);
 		carre->size++;
 		carre->tab = fill_tab(create_tab(carre, 0), carre->size);
 		carre = fill_it(carre, first, first, nbpiece);
 		return ;
 	}
+	//piece = first;
+	piece = lastpieceput(carre, first);
 	carre = fill_it(carre, first, piece, nbpiece);
 }
 
