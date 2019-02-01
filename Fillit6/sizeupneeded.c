@@ -1,6 +1,50 @@
 #include "fillit.h"
 
 #include <stdio.h>
+
+int		allpiecedisorder(char **str, int size)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	pat[26] = {0};
+
+	i = size - 1;
+	j = size - 1;
+	while (i > 0)
+	{
+		k = 0;
+		if (str[i][j] != '.')
+		{
+			while (k < 25)
+			{
+				if (pat[k] == str[i][j])
+					k = 25;
+				else if (pat[k] == '\0')
+				{
+					pat[k] = str[i][j];
+//printf("Pat : %s, k : %d\n", pat, k);
+					k = 25;
+				}
+				k++;
+			}
+		}
+//printf("Pat : %s\n", pat);
+//printf("Str[%d][%d] : %c\n", i, j, str[i][j]);
+		i = j == 0 ? i - 1 : i;
+		j = j == 0 ? size - 1 : j - 1;
+	}
+	i = 0;
+	k = 0;
+	while (pat[i])
+	{
+		if (k < pat[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int		sizeupneeded(t_carre *carre, t_piece *piece)	//piece ici == first
 {
 //printf("Entered\n");
