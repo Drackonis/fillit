@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/01 20:46:07 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/01 21:12:56 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 	else
 		carre = fill_loop(carre, piece, p, nbpiece);
 	free(p);
-	if (nbpiece != nbpieceposee(first))
-		again(nbpiece, first, carre);
+	while (nbpiece != nbpieceposee(first))
+		again(nbpiece, first, carre);	/* !!!!!!!!!!!!  CHANGEMENT ICI AVAT RECURSIVE, if au lieu de while */
 	return (carre);
 }
 
@@ -113,7 +113,8 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 	piece = first;  							/* LEQUEL ?? */
 //	piece = lastpieceput(carre, first);
 //printf("Before retsart fillit\n");
-	carre = fill_it(carre, first, piece, nbpiece);
+	return ;
+	//carre = fill_it(carre, first, piece, nbpiece);       /* !!!!!!!!!!!!  CHANGEMENT ICI AVAT RECURSIVE */
 }
 
 int		deplacerpiece(t_piece *piece, t_carre *carre, int i, int j)
