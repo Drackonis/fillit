@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/01 20:17:01 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:46:07 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,21 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 {
 	t_piece		*piece;
 
-afficher(carre->tab);
-write(1, "\n", 1);
+//afficher(carre->tab);
 	piece = first;
 	//piece = lastpieceput(carre, first);
 	while (piece->next)
 		piece = piece->next;
 	//piece = piece->next;
-printf("LAST PIECE: %c\n", piece->index + 65);
+//printf("LAST PIECE: %c\n", piece->index + 65);
 	while (piece->previous && !piece->put)
 		piece = piece->previous;
-printf("LAST PIECE PUT: %c\n", piece->index + 65);
+//printf("LAST PIECE PUT: %c\n", piece->index + 65);
 	while (nbpieceposee(first) && piece && deplacerpiece(piece, carre, 0, 0) != 1)
 	{
 		while (piece->previous && !piece->put)
 			piece = piece->previous;
-		printf("{PREV DEL}LAST PIECE PUT: %c\n", piece->index + 65);
+		//printf("{PREV DEL}LAST PIECE PUT: %c\n", piece->index + 65);
 	//	piece = lastpieceput(carre, first);
 		//piece = previouspieceput(carre, first, piece->index);
 //printf("Previous piece put: %c\n", piece->index + 65);
@@ -99,18 +98,12 @@ printf("LAST PIECE PUT: %c\n", piece->index + 65);
 	}
 		//piece = previouspieceput(carre, first, piece->index);
 //printf("ENDEPLACE\n");
-	/*
-	while (piece->next)
-		piece = piece->next;
-	while (piece->previous && piece->put == 0)
-		piece = piece->previous;
-	while (piece && deplacerpiece(piece, carre, 0, 0) != 1)
-		while (piece && piece->put == 0)
-			piece = piece->previous;*/
 	//piece = piece && piece->next ? piece->next : first;
-printf("Before piece disorder\n");
+//printf("Before piece disorder\n");
 	if (allpiecedisorder(carre->tab, carre->size))
 	{
+//afficher(carre->tab);
+//getchar();
 		again_loop(first);
 		carre->size++;
 		carre->tab = fill_tab(create_tab(carre, 0), carre->size);
@@ -119,7 +112,7 @@ printf("Before piece disorder\n");
 	}
 	piece = first;  							/* LEQUEL ?? */
 //	piece = lastpieceput(carre, first);
-printf("Before retsart fillit\n");
+//printf("Before retsart fillit\n");
 	carre = fill_it(carre, first, piece, nbpiece);
 }
 
@@ -143,7 +136,7 @@ int		deplacerpiece(t_piece *piece, t_carre *carre, int i, int j)
 		j = j == carre->size - 1 ? 0 : j + 1;
 		/*j = j < carre->size - 1 ? j + 1 : 0;
 		i = j == 0 ? i + 1 : i;*/
-printf("Sent to Checkpiece i : %d, j : %d\n", i, j);
+//printf("Sent to Checkpiece i : %d, j : %d\n", i, j);
 		if (check_piece(piece, carre, i, j) == 1)
 		{
 			piece->put = 1;
