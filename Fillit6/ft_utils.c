@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:37:22 by rkergast          #+#    #+#             */
-/*   Updated: 2019/01/10 15:51:44 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:22:50 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void		place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c)
 	int		j;
 
 	i = 0;
-	while (pos->x + i < carre->size && i < piece->ij.x + 1)
+	while (pos->x + i < carre->size - 1 && i < piece->ij.x + 1)
 	{
 		j = 0;
-		while (pos->y + j < carre->size && j < piece->ij.y + 1)
+		while (pos->y + j < carre->size - 1 && j < piece->ij.y + 1)
 		{
 			if (piece->ptr[i][j] == '#')
 				carre->tab[pos->x + i][pos->y + j] = 'A' + c;
@@ -72,17 +72,21 @@ void		place_piece(t_piece *piece, t_carre *carre, t_pos *pos, int c)
 		free(pos);
 }
 
+#include <stdio.h>
 int			check_piece(t_piece *piece, t_carre *carre, int x, int y)
 {
 	int		i;
 	int		j;
 
+//printf("x : %d, y : %d || ij.x : %d, ij.y : %d || size : %d\n", x,y,piece->ij.x,piece->ij.y,carre->size);
+	if (!piece || x + piece->ij.x > carre->size - 1 || y + piece->ij.y > carre->size - 1)
+		return (0);
 	j = 0;
 	i = 0;
-	while (x + i < carre->size && i < piece->ij.x + 1)
+	while (x + i < carre->size - 1 && i < piece->ij.x + 1)
 	{
 		j = 0;
-		while (y + j < carre->size && j < piece->ij.y + 1)
+		while (y + j < carre->size - 1 && j < piece->ij.y + 1)
 		{
 			if (piece->ptr[i][j] == '#' && carre->tab[x + i][y + j] != '.')
 				return (0);
