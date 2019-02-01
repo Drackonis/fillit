@@ -6,12 +6,12 @@
 #    By: rkergast <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 16:06:19 by rkergast          #+#    #+#              #
-#    Updated: 2019/01/28 14:21:11 by rkergast         ###   ########.fr        #
+#    Updated: 2019/02/01 18:29:43 by bviollet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 define SRC_NAME
-afficher.c chainedlist.c createtab.c error.c ft_utils.c error2.c\
+afficher.c chainedlist.c createtab.c error.c ft_utils.c error2.c sizeupneeded.c\
 libft/get_next_line.c input.c move.c fulfilltab.c main.c onepiece.c\
 libft/ft_bzero.c libft/ft_memcpy.c libft/ft_memccpy.c libft/ft_memmove.c\
 libft/ft_memchr.c libft/ft_memcmp.c libft/ft_strlen.c libft/ft_strdup.c\
@@ -30,7 +30,7 @@ libft/ft_lstnew.c libft/ft_lstdelone.c libft/ft_lstdel.c libft/ft_lstadd.c\
 libft/ft_lstiter.c libft/ft_lstmap.c libft/ft_strchrcol.c libft/ft_swap.c
 endef
 
-CC = gcc
+CC = gcc -g
 FLAGS = -Wall -Wextra -Werror
 OBJ_NAME = $(SRC:.c=.o)
 SRC = $(SRC_NAME)
