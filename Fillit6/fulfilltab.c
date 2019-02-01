@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/01 21:12:56 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/01 21:23:22 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 		carre = fill_loop(carre, piece, p, nbpiece);
 	free(p);
 	while (nbpiece != nbpieceposee(first))
-		again(nbpiece, first, carre);	/* !!!!!!!!!!!!  CHANGEMENT ICI AVAT RECURSIVE, if au lieu de while */
+	{	
+		carre = fill_loop(carre, first, p, nbpiece);
+		again(nbpiece, first, carre);
+		//again(nbpiece, first, carre);	/* !!!!!!!!!!!!  CHANGEMENT ICI AVAT RECURSIVE, if au lieu de while */
+	}
 	return (carre);
 }
 
@@ -76,6 +80,8 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 {
 	t_piece		*piece;
 
+	if (nbpiece == nbpieceposee(first))
+		return ;
 //afficher(carre->tab);
 	piece = first;
 	//piece = lastpieceput(carre, first);
@@ -102,12 +108,9 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 //printf("Before piece disorder\n");
 	if (allpiecedisorder(carre->tab, carre->size))
 	{
-//afficher(carre->tab);
-//getchar();
 		again_loop(first);
 		carre->size++;
 		carre->tab = fill_tab(create_tab(carre, 0), carre->size);
-		carre = fill_it(carre, first, first, nbpiece);
 		return ;
 	}
 	piece = first;  							/* LEQUEL ?? */
