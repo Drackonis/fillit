@@ -26,12 +26,14 @@ t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 			p->y = -1;
 			while (piece->put != 1 && p->y++ < carre->size - 1)
 			{
+//printf("Piece : %c, i : %d, j : %d\n", piece->index + 65, p->x, p->y);
 				if (check_piece(piece, carre, p->x, p->y) == 1)
 				{
 					piece->put = 1;
-					p->y = -1;
-					p->x = 0;
-					piece = first;
+					//p->y = 0;
+					//p->x = 0;
+					while (piece->next && piece->put)
+						piece = piece->next;
 					if (nbpiece == nbpieceposee(first))
 						return (carre);
 				}
@@ -47,6 +49,7 @@ t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 	t_pos	*p;
 	t_piece	*piece;
 
+							int try = 0;
 	piece = start;
 //afficher(carre->tab);
 	p = new_pos(0, 0);
@@ -55,14 +58,20 @@ t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 	if (nbpiece == 1)
 		carre = onepiece(carre, piece);
 	else
-		carre = fill_loop(carre, piece, p, nbpiece);
-	free(p);
-	while (nbpiece != nbpieceposee(first))
-	{	
-		carre = fill_loop(carre, first, p, nbpiece);
-		again(nbpiece, first, carre);
+		while (nbpiece != nbpieceposee(first))
+		{
+			while (piece && piece->put)
+				piece = piece->next;
+			carre = fill_loop(carre, first, p, nbpiece);
+afficher(carre->tab);
+printf("FillLoop : Try : %d\n", try);
+			again(nbpiece, first, carre);
+afficher(carre->tab);
+printf("Deplacer : Try : %d\n", try++);
+	getchar();
 		//again(nbpiece, first, carre);	/* !!!!!!!!!!!!  CHANGEMENT ICI AVAT RECURSIVE, if au lieu de while */
-	}
+		}
+	free(p);
 	return (carre);
 }
 
@@ -84,7 +93,6 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 		return ;
 //afficher(carre->tab);
 	piece = first;
-	//piece = lastpieceput(carre, first);
 	while (piece->next)
 		piece = piece->next;
 	//piece = piece->next;
@@ -92,16 +100,17 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 	while (piece->previous && !piece->put)
 		piece = piece->previous;
 //printf("LAST PIECE PUT: %c\n", piece->index + 65);
+//piece = lastpieceput(carre, first);
 	while (nbpieceposee(first) && piece && deplacerpiece(piece, carre, 0, 0) != 1)
 	{
 		while (piece->previous && !piece->put)
 			piece = piece->previous;
+	}
 		//printf("{PREV DEL}LAST PIECE PUT: %c\n", piece->index + 65);
 	//	piece = lastpieceput(carre, first);
 		//piece = previouspieceput(carre, first, piece->index);
 //printf("Previous piece put: %c\n", piece->index + 65);
 //getchar();
-	}
 		//piece = previouspieceput(carre, first, piece->index);
 //printf("ENDEPLACE\n");
 	//piece = piece && piece->next ? piece->next : first;
