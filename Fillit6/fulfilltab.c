@@ -30,10 +30,11 @@ t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 				if (check_piece(piece, carre, p->x, p->y) == 1)
 				{
 					piece->put = 1;
-					//p->y = 0;
-					//p->x = 0;
-					while (piece->next && piece->put)
-						piece = piece->next;
+					p->y = 0;
+					p->x = 0;
+					piece = first;
+					//while (piece && piece->put)
+					//	piece = piece->next;
 					if (nbpiece == nbpieceposee(first))
 						return (carre);
 				}
