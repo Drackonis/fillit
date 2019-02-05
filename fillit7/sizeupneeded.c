@@ -45,7 +45,54 @@ int		allpiecedisorder(char **str, int size)
 	return (1);
 }
 
-int		sizeupneeded(t_carre *carre, t_piece *piece)	//piece ici == first
+int		sizeupneeded(t_carre *carre, t_piece *first)	//piece ici == first
+{
+	int	i;
+	int	j;
+	t_piece	*piece;
+
+	i = carre->size - 1;
+	j = carre->size - 1;
+	while (i < carre->size && carre->tab[i][j] != ('A' + piece->index))
+	{
+printf("IJ : %d %d || size : %d\n", i, j, carre->size);
+		piece = first;
+		while (piece)
+		{
+			//if (piece && !piece->put && forsizecheck_piece(piece, carre, i, j))
+			if (piece && !piece->put && !check_pieceNO(piece, carre, i, j))
+				return (0);
+			piece = piece->next;
+		}
+		i = j == carre->size - 1 ? i + 1 : i;
+		j = j == carre->size - 1 ? 0 : j + 1;
+	}
+	return (1);
+}
+
+int			forsizecheck_piece(t_piece *piece, t_carre *carre, int x, int y)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (x + i < carre->size - 1 && i < piece->ij.x + 1) // PARISING ???????
+	{
+		j = 0;
+		while (y + j < carre->size - 1 && j < piece->ij.y + 1)
+		{
+			if (piece->ptr[i][j] == '#' && carre->tab[x + i][y + j] != '.')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	if (j < piece->ij.y + 1 || i < piece->ij.x + 1)
+		return (0);
+	return (1); // la piece peut etre posee a l'endroit envoye
+}
+
+/*int		sizeupneeded(t_carre *carre, t_piece *piece)	//piece ici == first
 {
 //printf("Entered\n");
 	while (piece)
@@ -58,7 +105,7 @@ int		sizeupneeded(t_carre *carre, t_piece *piece)	//piece ici == first
 		piece = piece->next;
 	}
 	return (1);
-}
+}*/
 
 int		forsizedeplacerpiece(t_piece *piece, t_carre *carre)
 {
@@ -100,17 +147,20 @@ printf("i : %d, j : %d\n", i, j);
 	return (0); // la piece ne peut pas etre deplace
 }
 
-int			forsizecheck_piece(t_piece *piece, t_carre *carre, int x, int y)
+
+int			check_pieceNO(t_piece *piece, t_carre *carre, int x, int y)
 {
 	int		i;
 	int		j;
 
-printf("Piece : %c, i : %d, j : %d\n", (char)piece->index + 65, x, y);
+	if (!piece || x + piece->ij.x > carre->size  || y + piece->ij.y > carre->size )
+		return (0);
+	j = 0;
 	i = 0;
-	while (x + i < carre->size - 1 && i < piece->ij.x + 1)
+	while (x + i < carre->size && i < piece->ij.x + 1)
 	{
 		j = 0;
-		while (y + j < carre->size - 1 && j < piece->ij.y + 1)
+		while (y + j < carre->size && j < piece->ij.y + 1)
 		{
 			if (piece->ptr[i][j] == '#' && carre->tab[x + i][y + j] != '.')
 				return (0);
@@ -120,6 +170,5 @@ printf("Piece : %c, i : %d, j : %d\n", (char)piece->index + 65, x, y);
 	}
 	if (j < piece->ij.y + 1 || i < piece->ij.x + 1)
 		return (0);
-	//place_piece(piece, carre, new_pos(x, y), piece->index);
-	return (1); // la piece peut etre posee a l'endroit envoye
+	return (1);
 }
