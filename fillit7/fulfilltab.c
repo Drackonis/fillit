@@ -6,12 +6,13 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 18:16:08 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 18:21:20 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+#include <stdio.h>
 t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 {
 	t_piece		*first;
@@ -89,8 +90,10 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 		while (piece && piece->previous && !piece->put)
 			piece = piece->previous;
 	}
-	if (allpiecedisorder(carre->tab, carre->size) && sizeupneeded(carre, first))
+	if (allpiecedisorder(carre->tab, carre->size) && !sizeupneeded(carre, first))
 	{
+afficher(carre->tab);
+getchar();
 		again_loop(first);
 		carre->size++;
 		carre->tab = fill_tab(create_tab(carre, 0), carre->size);
