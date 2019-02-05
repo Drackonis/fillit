@@ -6,13 +6,12 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 16:56:09 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:26:19 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-#include <stdio.h>
 t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 {
 	t_piece		*first;
