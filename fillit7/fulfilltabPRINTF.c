@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 16:55:53 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 18:01:19 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ printf("NEW PIECE DEPLACEMENT INTERIEUR WHILE: %c\n", piece->index + 65);
 //printf("ENDEPLACE\n");
 	//piece = piece && piece->next ? piece->next : first;
 //printf("Before piece disorder\n");
-	if (allpiecedisorder(carre->tab, carre->size))
+
+	if (allpiecedisorder(carre->tab, carre->size) && sizeupneeded(carre, first))
 	{
 		again_loop(first);
 		carre->size++;
