@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 18:25:58 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 18:33:35 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ t_carre	*fill_it(t_carre *carre, t_piece *first, t_piece *start, int nbpiece)
 	else
 		while (nbpiece != nbpieceposee(first))
 		{
+//getchar();
+//afficher(carre->tab);
 			carre = fill_loop(carre, first, p, nbpiece);
+//printf("\n---\n");
+//getchar();
+//afficher(carre->tab);
 			if (nbpiece != nbpieceposee(first))
 				again(nbpiece, first, carre);
 		}
@@ -90,8 +95,10 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 		while (piece && piece->previous && !piece->put)
 			piece = piece->previous;
 	}
-	if (allpiecedisorder(carre->tab, carre->size) && !sizeupneeded(carre, first))
+	if (allpiecedisorder(carre->tab, carre->size) && sizeupneeded(carre, first))
 	{
+	//	afficher(carre->tab);
+	//	getchar();
 		again_loop(first);
 		carre->size++;
 		carre->tab = fill_tab(create_tab(carre, 0), carre->size);

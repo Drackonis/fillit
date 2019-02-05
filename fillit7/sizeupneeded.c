@@ -60,8 +60,7 @@ int		sizeupneeded(t_carre *carre, t_piece *first)	//piece ici == first
 		piece = first;
 		while (piece)
 		{
-			//if (piece && !piece->put && forsizecheck_piece(piece, carre, i, j))
-			if (piece && !piece->put && check_pieceNO(piece, carre, i, j))
+			if (piece && !piece->put && check_pieceNO(piece, carre, i, j)) // 1 si piece place
 				return (0);
 			piece = piece->next;
 		}
