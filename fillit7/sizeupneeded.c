@@ -51,9 +51,10 @@ int		sizeupneeded(t_carre *carre, t_piece *first)	//piece ici == first
 	int	j;
 	t_piece	*piece;
 
+	piece = first;
 	i = carre->size - 1;
 	j = carre->size - 1;
-	while (i < carre->size && carre->tab[i][j] != ('A' + piece->index))
+	while (piece && i < carre->size && carre->tab[i][j] != ('A' + piece->index))
 	{
 printf("IJ : %d %d || size : %d\n", i, j, carre->size);
 		piece = first;
