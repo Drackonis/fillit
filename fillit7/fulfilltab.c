@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 16:42:45 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 16:56:09 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 				if (check_piece(piece, carre, p->x, p->y) == 1)
 				{
 					piece->put = 1;
-					p->y = 0;
+					p->y = -1;
 					p->x = 0;
 					piece = first;
 					while (piece && piece->put)

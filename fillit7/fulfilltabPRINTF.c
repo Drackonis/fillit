@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 16:35:52 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 16:55:53 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_carre	*fill_loop(t_carre *carre, t_piece *piece, t_pos *p, int nbpiece)
 			p->y = -1;
 			while (piece->put != 1 && p->y++ < carre->size - 1)
 			{
-//printf("Piece : %c, i : %d, j : %d\n", piece->index + 65, p->x, p->y);
+printf("Piece : %c, i : %d, j : %d\n", piece->index + 65, p->x, p->y);
 				if (check_piece(piece, carre, p->x, p->y) == 1)
 				{
 					piece->put = 1;
-					p->y = 0;
+					p->y = -1;
 					p->x = 0;
 					piece = first;
 					while (piece && piece->put)
