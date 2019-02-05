@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 13:53:44 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 15:26:52 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 17:54:14 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ t_piece				*lastpieceput(t_carre *carre, t_piece *first, char c);
 int					allpiecedisorder(char **str, int size);
 t_piece				*previouspieceput(t_carre *carre, t_piece *piece, int last);
 
-int					sizeupneeded(t_carre *carre, t_piece *piece);
+int					check_pieceNO(t_piece *piece, t_carre *carre, int x, int y);
+int					sizeupneeded(t_carre *carre, t_piece *first);
 int					forsizedeplacerpiece(t_piece *piece, t_carre *carre);
 int					forsizecheck_piece(t_piece *piece, t_carre *carre, int x, int y);
 
