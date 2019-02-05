@@ -6,7 +6,7 @@
 /*   By: rkergast <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:31:42 by rkergast          #+#    #+#             */
-/*   Updated: 2019/02/05 18:21:20 by bviollet         ###   ########.fr       */
+/*   Updated: 2019/02/05 18:25:58 by bviollet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ void	again(int nbpiece, t_piece *first, t_carre *carre)
 	}
 	if (allpiecedisorder(carre->tab, carre->size) && !sizeupneeded(carre, first))
 	{
-afficher(carre->tab);
-getchar();
 		again_loop(first);
 		carre->size++;
 		carre->tab = fill_tab(create_tab(carre, 0), carre->size);
